@@ -10,9 +10,11 @@ ErrorDocument 404 https://wecaredentist.com/404
 ErrorDocument 403 https://wecaredentist.com/404
 
 # ─── Force HTTPS + Strip www ───────────────────────────────────────────────
-RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^ https://wecaredentist.com%{REQUEST_URI} [L,R=301,NE]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # ─── Pretty URL Rules ──────────────────────────────────────────────────────
 RewriteRule ^blog-detail/([a-zA-Z0-9-/]+)$ single-post.php?url=$1 [L]
