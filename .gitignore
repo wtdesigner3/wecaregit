@@ -1,0 +1,15 @@
+# IDEs
+.vscode/
+.idea/
+
+# Logs and ini
+error_log
+*.log
+*.ini
+.user.ini
+
+# Temp folders
+/tmp/
+
+# GitHub Actions
+!.github/
