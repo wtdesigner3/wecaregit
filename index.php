@@ -72,7 +72,8 @@ $prof = mysqli_fetch_array($profile);
         .hero-slide-content {
             position: absolute;
             inset: 0;
-            z-index: 3;                    /* higher than overlay z-index:2 */
+            z-index: 3;
+            /* higher than overlay z-index:2 */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -146,7 +147,7 @@ $prof = mysqli_fetch_array($profile);
 </head>
 
 <body>
-
+    <!-- ssssssssssssssssssssss -->
     <!-- PRELOADER -->
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -163,116 +164,116 @@ $prof = mysqli_fetch_array($profile);
         <!-- ═══════════════════════════════════
          HERO BANNER
     ═══════════════════════════════════ -->
-    
-<section id="hero-section">
-    <div class="hero-bg-slider">
-        <?php
-        $hbnr = mysqli_query($conn, "SELECT * FROM `tbl_banner` WHERE `bnr_status`='1' ORDER BY `bnr_sort` ASC");
-        $i = 0;
-        if (mysqli_num_rows($hbnr) != 0) {
-            while ($hbnrfetch = mysqli_fetch_array($hbnr)) {
-        ?>
-                <div class="hero-slide <?= $i == 0 ? 'active' : ''; ?>" data-index="<?= $i; ?>">
 
-    <!-- 1. Background image -->
-    <img loading="lazy"
-         src="<?= BASE_URL; ?>uploads/banner/<?= $hbnrfetch['bnr_image']; ?>"
-         alt="<?= htmlspecialchars($hbnrfetch['bnr_subtitle'] ?? ''); ?>">
+        <section id="hero-section">
+            <div class="hero-bg-slider">
+                <?php
+                $hbnr = mysqli_query($conn, "SELECT * FROM `tbl_banner` WHERE `bnr_status`='1' ORDER BY `bnr_sort` ASC");
+                $i = 0;
+                if (mysqli_num_rows($hbnr) != 0) {
+                    while ($hbnrfetch = mysqli_fetch_array($hbnr)) {
+                        ?>
+                        <div class="hero-slide <?= $i == 0 ? 'active' : ''; ?>" data-index="<?= $i; ?>">
 
-    <!-- 2. Dark overlay -->
-    <div class="hero-overlay"></div>
+                            <!-- 1. Background image -->
+                            <img loading="lazy" src="<?= BASE_URL; ?>uploads/banner/<?= $hbnrfetch['bnr_image']; ?>"
+                                alt="<?= htmlspecialchars($hbnrfetch['bnr_subtitle'] ?? ''); ?>">
 
-    <!-- 3. Content MUST be after overlay with higher z-index -->
-    <div class="hero-slide-content">
-        <div class="hero-eyebrow">
-            <span class="hero-eyebrow-dot"></span>
-            <span><?= htmlspecialchars($hbnrfetch['bnr_subtitle'] ?? ''); ?></span>
-        </div>
-        <h2 class="hero-title">
-            <?= htmlspecialchars($hbnrfetch['bnr_title'] ?? ''); ?>
-        </h2>
-        <div class="hero-actions">
-            <a href="<?= BASE_URL ?>contact" class="btn-primary-hero">
-                Book Appointment
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-            </a>
-        </div>
-    </div>
+                            <!-- 2. Dark overlay -->
+                            <div class="hero-overlay"></div>
 
-</div>
-        <?php 
-            $i++;
-            }
-        } ?>
-    </div>
+                            <!-- 3. Content MUST be after overlay with higher z-index -->
+                            <div class="hero-slide-content">
+                                <div class="hero-eyebrow">
+                                    <span class="hero-eyebrow-dot"></span>
+                                    <span><?= htmlspecialchars($hbnrfetch['bnr_subtitle'] ?? ''); ?></span>
+                                </div>
+                                <h2 class="hero-title">
+                                    <?= htmlspecialchars($hbnrfetch['bnr_title'] ?? ''); ?>
+                                </h2>
+                                <div class="hero-actions">
+                                    <a href="<?= BASE_URL ?>contact" class="btn-primary-hero">
+                                        Book Appointment
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
 
-    <!-- Indicators -->
-    <?php
-    $hbnr2 = mysqli_query($conn, "SELECT COUNT(*) as cnt FROM `tbl_banner` WHERE `bnr_status`='1'");
-    $cntRow = mysqli_fetch_assoc($hbnr2);
-    $totalSlides = $cntRow['cnt'];
-    ?>
-    <div class="hero-indicators">
-        <?php for ($d = 0; $d < $totalSlides; $d++): ?>
-            <div class="hero-dot <?= $d == 0 ? 'active' : ''; ?>" data-target="<?= $d; ?>"></div>
-        <?php endfor; ?>
-    </div>
+                        </div>
+                        <?php
+                        $i++;
+                    }
+                } ?>
+            </div>
 
-    <!-- Prev Button -->
-    <button id="heroPrev" aria-label="Previous slide" style="
+            <!-- Indicators -->
+            <?php
+            $hbnr2 = mysqli_query($conn, "SELECT COUNT(*) as cnt FROM `tbl_banner` WHERE `bnr_status`='1'");
+            $cntRow = mysqli_fetch_assoc($hbnr2);
+            $totalSlides = $cntRow['cnt'];
+            ?>
+            <div class="hero-indicators">
+                <?php for ($d = 0; $d < $totalSlides; $d++): ?>
+                    <div class="hero-dot <?= $d == 0 ? 'active' : ''; ?>" data-target="<?= $d; ?>"></div>
+                <?php endfor; ?>
+            </div>
+
+            <!-- Prev Button -->
+            <button id="heroPrev" aria-label="Previous slide" style="
         position:absolute; left:32px; top:50%; transform:translateY(-50%); z-index:4;
         width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.4);
         background:rgba(255,255,255,0.12); backdrop-filter:blur(8px);
         cursor:pointer; display:flex; align-items:center; justify-content:center;
         transition:all 0.3s ease;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e8c8b" stroke-width="2">
-            <polyline points="15 18 9 12 15 6" />
-        </svg>
-    </button>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e8c8b" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </button>
 
-    <!-- Next Button -->
-    <button id="heroNext" aria-label="Next slide" style="
+            <!-- Next Button -->
+            <button id="heroNext" aria-label="Next slide" style="
         position:absolute; right:32px; top:50%; transform:translateY(-50%); z-index:4;
         width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.4);
         background:rgba(255,255,255,0.12); backdrop-filter:blur(8px);
         cursor:pointer; display:flex; align-items:center; justify-content:center;
         transition:all 0.3s ease;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e8c8b" stroke-width="2">
-            <polyline points="9 18 15 12 9 6" />
-        </svg>
-    </button>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e8c8b" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </button>
 
-    <!-- Stats -->
-    <?php
-    $achieve = mysqli_query($conn, "SELECT * FROM `tbl_achievement` WHERE id='1'");
-    if (mysqli_num_rows($achieve) > 0) {
-        $achieveData = mysqli_fetch_assoc($achieve);
-        ?>
-        <div class="hero-stats">
-            <?php if (!empty($achieveData['number1']) && !empty($achieveData['text1'])): ?>
-                <div class="hero-stat">
-                    <div class="hero-stat-num"><?= $achieveData['number1'] ?></div>
-                    <div class="hero-stat-label"><?= $achieveData['text1'] ?></div>
+            <!-- Stats -->
+            <?php
+            $achieve = mysqli_query($conn, "SELECT * FROM `tbl_achievement` WHERE id='1'");
+            if (mysqli_num_rows($achieve) > 0) {
+                $achieveData = mysqli_fetch_assoc($achieve);
+                ?>
+                <div class="hero-stats">
+                    <?php if (!empty($achieveData['number1']) && !empty($achieveData['text1'])): ?>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num"><?= $achieveData['number1'] ?></div>
+                            <div class="hero-stat-label"><?= $achieveData['text1'] ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($achieveData['number2']) && !empty($achieveData['text2'])): ?>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num"><?= $achieveData['number2'] ?></div>
+                            <div class="hero-stat-label"><?= $achieveData['text2'] ?></div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!empty($achieveData['number3']) && !empty($achieveData['text3'])): ?>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num"><?= $achieveData['number3'] ?></div>
+                            <div class="hero-stat-label"><?= $achieveData['text3'] ?></div>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-            <?php if (!empty($achieveData['number2']) && !empty($achieveData['text2'])): ?>
-                <div class="hero-stat">
-                    <div class="hero-stat-num"><?= $achieveData['number2'] ?></div>
-                    <div class="hero-stat-label"><?= $achieveData['text2'] ?></div>
-                </div>
-            <?php endif; ?>
-            <?php if (!empty($achieveData['number3']) && !empty($achieveData['text3'])): ?>
-                <div class="hero-stat">
-                    <div class="hero-stat-num"><?= $achieveData['number3'] ?></div>
-                    <div class="hero-stat-label"><?= $achieveData['text3'] ?></div>
-                </div>
-            <?php endif; ?>
-        </div>
-    <?php } ?>
+            <?php } ?>
 
-</section>
+        </section>
 
 
 
@@ -544,11 +545,11 @@ $prof = mysqli_fetch_array($profile);
                                     </div>
                                     <div class="blog-body">
                                         <h4><?= $blog['b_title']; ?></h4>
-                                        
-                                            <p class="blog-card-excerpt">
-                                                <?= strip_tags($blog['b_description']); ?>...
-                                            </p>
-                                        
+
+                                        <p class="blog-card-excerpt">
+                                            <?= strip_tags($blog['b_description']); ?>...
+                                        </p>
+
                                         <span class="blog-arrow">Read Article →</span>
                                     </div>
                                 </a>
