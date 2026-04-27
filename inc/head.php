@@ -1,4 +1,4 @@
-<?php require('inc/function.php'); ?>
+<?php require_once('inc/function.php'); ?>
 <?php
 $conqry = mysqli_query($conn, "SELECT * FROM `tbl_profile`");
 $proinfo = mysqli_fetch_array($conqry);

@@ -23,9 +23,9 @@ if (!empty($contact_seo['title']) && !empty($contact_seo['description']) && !emp
 
 <head>
     <?php include 'inc/head.php'; ?>
-    <title><?= $seo_title ?></title>
-    <meta name="description" content="<?= $seo_detail ?>" />
-    <meta name="keywords" content="<?= $seo_keyword ?>">
+    <title><?= htmlspecialchars($seo_title ?? '', ENT_QUOTES, 'UTF-8') ?></title>
+    <meta name="description" content="<?= htmlspecialchars($seo_detail ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="keywords" content="<?= htmlspecialchars($seo_keyword ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <meta name="robots" content="index, follow" />
     <?= $contact_seo['head_detail'] ?>
 

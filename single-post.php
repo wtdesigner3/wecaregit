@@ -17,9 +17,9 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
 
 <head>
     <?php include 'inc/head.php'; ?>
-    <title><?php echo ($blog['metatag'] != '') ? $blog['metatag'] : $blog['b_title']; ?> || <?= SITE_NAME ?></title>
-    <meta name="description" content="<?= $blog['metadesc']; ?>" />
-    <meta name="keywords" content="<?= $blog['metakeyword']; ?>">
+    <title><?= htmlspecialchars(($blog['metatag'] != '') ? $blog['metatag'] : $blog['b_title']) ?> || <?= SITE_NAME ?></title>
+    <meta name="description" content="<?= htmlspecialchars($blog['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="keywords" content="<?= htmlspecialchars($blog['metakeyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <meta name="robots" content="index, follow" />
     <?= $blog['head_detail'] ?>
 

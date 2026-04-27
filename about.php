@@ -16,10 +16,9 @@ $abtfetch2 = mysqli_fetch_array($abt2);
 
 <head>
     <?php include 'inc/head.php'; ?>
-    <title><?php if ($abtfetch['metatag'] == '') { ?>     <?= $abtfetch['title'] ?><?php } else { ?>
-            <?= $abtfetch['metatag'] ?><?php } ?> || <?= SITE_NAME ?></title>
-    <meta name="description" content="<?= $abtfetch['metadesc'] ?>" />
-    <meta name="keywords" content="<?= $abtfetch['keyword'] ?>">
+    <title><?= htmlspecialchars(!empty($abtfetch['metatag']) ? $abtfetch['metatag'] : $abtfetch['title']) ?> || <?= SITE_NAME ?></title>
+    <meta name="description" content="<?= htmlspecialchars($abtfetch['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="keywords" content="<?= htmlspecialchars($abtfetch['keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <meta name="robots" content="index, follow" />
     <?= $abtfetch['head_detail'] ?>
 

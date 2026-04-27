@@ -1,4 +1,4 @@
-<?php require('inc/function.php'); ?> 
+<?php require_once('inc/function.php'); ?> 
 <?php
 $con = mysqli_query($conn, "SELECT * FROM `tbl_contact`");
 $coninfo = mysqli_fetch_array($con);
