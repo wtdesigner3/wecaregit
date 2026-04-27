@@ -67,6 +67,32 @@ $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "<?= BASE_URL ?>"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "<?= BASE_URL ?>services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "<?= $pdetailrec['heading'] ?>",
+          "item": "<?= $canonical_url ?>"
+        }
+      ]
+    }
+    </script>
     <?= $pdetailrec['head_detail'] ?>
 
     <!-- Google Fonts -->

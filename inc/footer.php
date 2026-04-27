@@ -156,6 +156,29 @@ $brandfetch = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `tbl_service
         </div>
 
 
+        <!-- ══ COL 3: Our Services ══ -->
+        <div class="footer-col">
+            <span class="footer-col-title">Our Services</span>
+            <ul class="footer-links">
+                <?php
+                $ftSvc = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC LIMIT 6");
+                if (mysqli_num_rows($ftSvc) != 0) {
+                    while ($fs = mysqli_fetch_array($ftSvc)) {
+                        $fhref = (!empty($fs['link'])) ? $fs['link'] : BASE_URL . 'services/' . $fs['url'];
+                ?>
+                <li>
+                    <a href="<?= $fhref; ?>">
+                        <span class="link-arrow"><svg viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg></span>
+                        <?= $fs['heading']; ?>
+                    </a>
+                </li>
+                <?php } } ?>
+            </ul>
+        </div>
+
+
         <!-- ══ COL 3: Contact ══ -->
         <div class="footer-col">
             <span class="footer-col-title">Our Location</span>
