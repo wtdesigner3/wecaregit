@@ -13,20 +13,24 @@ $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP
 
 <head>
     <?php include 'inc/head.php'; ?>
-    <title><?php if ($pdetailrec['metatag'] == '') { ?>     <?= $pdetailrec['heading'] ?><?php } else { ?><?= $pdetailrec['metatag'] ?><?php } ?></title>
+    <title><?php if ($pdetailrec['metatag'] == '') { ?>
+            <?= $pdetailrec['heading'] ?><?php } else { ?>     <?= $pdetailrec['metatag'] ?><?php } ?>
+    </title>
     <meta name="description" content="<?= $pdetailrec['metadesc'] ?>" />
     <meta name="keywords" content="<?= $pdetailrec['keyword'] ?>">
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="<?php if ($pdetailrec['metatag'] == '') { ?>     <?= $pdetailrec['heading'] ?><?php } else { ?><?= $pdetailrec['metatag'] ?><?php } ?>" />
+    <meta property="og:title"
+        content="<?php if ($pdetailrec['metatag'] == '') { ?>     <?= $pdetailrec['heading'] ?><?php } else { ?><?= $pdetailrec['metatag'] ?><?php } ?>" />
     <meta property="og:description" content="<?= $pdetailrec['metadesc'] ?>" />
     <meta property="og:image" content="<?= BASE_URL; ?>uploads/services/<?= $pdetailrec['image']; ?>" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="<?php if ($pdetailrec['metatag'] == '') { ?>     <?= $pdetailrec['heading'] ?><?php } else { ?><?= $pdetailrec['metatag'] ?><?php } ?>" />
+    <meta name="twitter:title"
+        content="<?php if ($pdetailrec['metatag'] == '') { ?>     <?= $pdetailrec['heading'] ?><?php } else { ?><?= $pdetailrec['metatag'] ?><?php } ?>" />
     <meta name="twitter:description" content="<?= $pdetailrec['metadesc'] ?>" />
     <meta name="twitter:image" content="<?= BASE_URL; ?>uploads/services/<?= $pdetailrec['image']; ?>" />
 
@@ -177,9 +181,9 @@ $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP
                     <p>Ready to experience world-class dental care? Schedule your visit today.</p>
                     <a href="<?= BASE_URL; ?>contact" class="btn-appt">Book Now</a>
                     <?php
-$con = mysqli_query($conn, "SELECT con_phone1,con_phone2 FROM `tbl_contact`");
-$coninfo = mysqli_fetch_array($con);
-?>
+                    $con = mysqli_query($conn, "SELECT con_phone1,con_phone2 FROM `tbl_contact`");
+                    $coninfo = mysqli_fetch_array($con);
+                    ?>
                     <a href="tel:<?= $coninfo['con_phone1']; ?>" class="btn-call">Or call us directly →</a>
                 </div>
 
@@ -207,11 +211,11 @@ $coninfo = mysqli_fetch_array($con);
                             <label>Message</label>
                             <textarea name="message" placeholder="Tell us about your concern..."></textarea>
                         </div>
-                        
+
                         <div class="recaptcha-wrap">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
-                        </div>                        
-                        
+                        </div>
+
                         <button type="submit" class="btn-submit">Send Enquiry</button>
                     </form>
                 </div>
