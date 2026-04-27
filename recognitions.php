@@ -12,6 +12,7 @@
     <title>Press Release || <?= SITE_NAME ?></title>
     <?php include 'inc/head.php'; ?>
 </head>
+
 <body>
     <!-- PRELOADER SPINNER================== -->
     <div id="loader-wrapper">
@@ -51,60 +52,56 @@
                 </ul>
                 <ul class="filter-item">
                     <?php
-                        $pressqryy = mysqli_query($conn, "SELECT * FROM `tbl_press` WHERE `status`='1' ORDER BY `sort` ASC");
-                        if (mysqli_num_rows($pressqryy) != 0) {
-                            while ($pressfetch = mysqli_fetch_array($pressqryy))
-                            { 
-                                if ($pressfetch['video'] != '') 
-                                { ?>
-                                    <li data-item="video" class="col-md-3 delete">
-                                        <div class="doctor-1">
-                                            <!-- Doctor Video -->
-                                            <div class="hover-overlay text-center">
-                                                <iframe src="https://www.youtube.com/embed/<?= $pressfetch['video']; ?>" width="100%" height="300"
-                                                    style="border:1px solid black;"></iframe>
-                                            </div>
+                    $pressqryy = mysqli_query($conn, "SELECT * FROM `tbl_press` WHERE `status`='1' ORDER BY `sort` ASC");
+                    if (mysqli_num_rows($pressqryy) != 0) {
+                        while ($pressfetch = mysqli_fetch_array($pressqryy)) {
+                            if ($pressfetch['video'] != '') { ?>
+                                <li data-item="video" class="col-md-3 delete">
+                                    <div class="doctor-1">
+                                        <!-- Doctor Video -->
+                                        <div class="hover-overlay text-center">
+                                            <iframe src="https://www.youtube.com/embed/<?= $pressfetch['video']; ?>" width="100%"
+                                                height="300" style="border:1px solid black;"></iframe>
                                         </div>
-                                    </li>
-                               <?php  
-                               }
-                               else
-                               { ?>
-                                    <li data-item="image" class="col-md-3 active">
-                                        <div class="doctor-1">
-                                            <!-- Doctor Photo -->
-                                            <div class="hover-overlay text-center">
-                                                <!-- Photo -->
-                                                <img loading="lazy"  class="img-fluid"
-                                                    src="<?= BASE_URL; ?>uploads/team/<?= $pressfetch['image']; ?>"
-                                                    alt="<?= $pressfetch['alt']; ?>">
-                                                <div class="item-overlay"></div>
-                                                <!-- Profile Link -->
-                                                <div class="profile-link">
-                                                    <div class="blog-post-img">
-                                                        <div class="video-preview text-center">
-                                                            <!-- Change the link HERE!!! -->
-                                                            <a class="image-link"
-                                                                href="<?= BASE_URL; ?>uploads/team/<?= $pressfetch['image']; ?>">
-                                                                <!-- Play Icon -->
-                                                                <div class="video-btn play-icon-blue">
-                                                                    <div class="video-block-wrapper video-block-wrapper2">
-                                                                        <p>Read More</p>
-                                                                    </div>
+                                    </div>
+                                </li>
+                            <?php
+                            } else { ?>
+                                <li data-item="image" class="col-md-3 active">
+                                    <div class="doctor-1">
+                                        <!-- Doctor Photo -->
+                                        <div class="hover-overlay text-center">
+                                            <!-- Photo -->
+                                            <img loading="lazy" class="img-fluid"
+                                                src="<?= BASE_URL; ?>uploads/team/<?= $pressfetch['image']; ?>"
+                                                alt="<?= $pressfetch['alt']; ?>">
+                                            <div class="item-overlay"></div>
+                                            <!-- Profile Link -->
+                                            <div class="profile-link">
+                                                <div class="blog-post-img">
+                                                    <div class="video-preview text-center">
+                                                        <!-- Change the link HERE!!! -->
+                                                        <a class="image-link"
+                                                            href="<?= BASE_URL; ?>uploads/team/<?= $pressfetch['image']; ?>">
+                                                            <!-- Play Icon -->
+                                                            <div class="video-btn play-icon-blue">
+                                                                <div class="video-block-wrapper video-block-wrapper2">
+                                                                    <p>Read More</p>
                                                                 </div>
-                                                            </a>
-                                                        </div>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    
-                               <?php 
-                               } 
-                              } 
+                                    </div>
+                                </li>
+
+                            <?php
+                            }
                         }
-                            ?>
+                    }
+                    ?>
                 </ul>
             </div>
     </div>

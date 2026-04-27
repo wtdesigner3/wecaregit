@@ -5,7 +5,7 @@ $venfetch = mysqli_fetch_array($vqry);
 
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
 
@@ -24,9 +24,9 @@ $venfetch = mysqli_fetch_array($vqry);
 
 	<!-- PRELOADER SPINNER
 		============================================= -->
-  <div id="loader-wrapper">
-        <div id="loader"></div>
-    </div>
+	<div id="loader-wrapper">
+		<div id="loader"></div>
+	</div>
 
 
 	<!-- PAGE CONTENT

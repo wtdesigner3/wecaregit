@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You – We Care Dentist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --mint: #d6f0eb;
@@ -70,9 +73,27 @@
             pointer-events: none;
             user-select: none;
         }
-        .deco-tooth:nth-child(1) { top: 12%; left: 8%; font-size: 100px; transform: rotate(-15deg); }
-        .deco-tooth:nth-child(2) { bottom: 18%; right: 7%; font-size: 70px; transform: rotate(20deg); }
-        .deco-tooth:nth-child(3) { top: 55%; left: 4%; font-size: 50px; transform: rotate(5deg); }
+
+        .deco-tooth:nth-child(1) {
+            top: 12%;
+            left: 8%;
+            font-size: 100px;
+            transform: rotate(-15deg);
+        }
+
+        .deco-tooth:nth-child(2) {
+            bottom: 18%;
+            right: 7%;
+            font-size: 70px;
+            transform: rotate(20deg);
+        }
+
+        .deco-tooth:nth-child(3) {
+            top: 55%;
+            left: 4%;
+            font-size: 50px;
+            transform: rotate(5deg);
+        }
 
         .card {
             background: var(--white);
@@ -91,15 +112,24 @@
         }
 
         @keyframes floatUp {
-            from { opacity: 0; transform: translateY(32px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Top accent bar */
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 12%; right: 12%;
+            top: 0;
+            left: 12%;
+            right: 12%;
             height: 4px;
             background: linear-gradient(90deg, var(--teal), #5bc8ba);
             border-radius: 0 0 8px 8px;
@@ -118,8 +148,15 @@
         }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to   { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .icon-wrap svg {
@@ -190,7 +227,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
         }
 
         .info-icon svg {
@@ -241,11 +278,14 @@
         }
 
         .btn svg {
-            width: 16px; height: 16px;
+            width: 16px;
+            height: 16px;
             transition: transform 0.2s;
         }
 
-        .btn:hover svg { transform: translateX(3px); }
+        .btn:hover svg {
+            transform: translateX(3px);
+        }
 
         .footer-note {
             margin-top: clamp(14px, 2vh, 24px);
@@ -255,22 +295,46 @@
         }
 
         @media (max-width: 480px) {
-            .card { border-radius: 20px; }
-            .deco-tooth { display: none; }
-            body::before, body::after { display: none; }
+            .card {
+                border-radius: 20px;
+            }
+
+            .deco-tooth {
+                display: none;
+            }
+
+            body::before,
+            body::after {
+                display: none;
+            }
         }
 
         @media (max-height: 700px) {
-            .badge { margin-bottom: 10px; }
-            .info-row { padding: 10px 16px; margin-bottom: 8px; }
-            .info-icon { width: 30px; height: 30px; }
-            .info-icon svg { width: 15px; height: 15px; }
+            .badge {
+                margin-bottom: 10px;
+            }
+
+            .info-row {
+                padding: 10px 16px;
+                margin-bottom: 8px;
+            }
+
+            .info-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .info-icon svg {
+                width: 15px;
+                height: 15px;
+            }
         }
 
         /* Confetti dots */
         .confetti {
             position: fixed;
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 2px;
             pointer-events: none;
             animation: fall linear forwards;
@@ -278,11 +342,19 @@
         }
 
         @keyframes fall {
-            0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <span class="deco-tooth">🦷</span>
@@ -291,8 +363,9 @@
 
     <div class="card">
         <div class="icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1a8f7f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6L9 17l-5-5"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a8f7f" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5" />
             </svg>
         </div>
 
@@ -305,8 +378,12 @@
 
         <div class="info-row">
             <div class="info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
             </div>
             <div class="info-text">
@@ -317,8 +394,10 @@
 
         <div class="info-row" style="animation-delay:0.45s">
             <div class="info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.13a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.09a16 16 0 006.29 6.29l1.18-1.18a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.13a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.09a16 16 0 006.29 6.29l1.18-1.18a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
             </div>
             <div class="info-text">
@@ -329,8 +408,10 @@
 
         <a href="https://wecaredentist.com/" class="btn">
             Back to Home
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
             </svg>
         </a>
 
@@ -339,7 +420,7 @@
 
     <script>
         // Confetti burst on load
-        const colors = ['#1a8f7f','#5bc8ba','#d6f0eb','#a8ddd7','#f4c94a','#f9a8d4'];
+        const colors = ['#1a8f7f', '#5bc8ba', '#d6f0eb', '#a8ddd7', '#f4c94a', '#f9a8d4'];
         function makeConfetti() {
             for (let i = 0; i < 48; i++) {
                 const el = document.createElement('div');
@@ -361,4 +442,5 @@
         window.addEventListener('load', makeConfetti);
     </script>
 </body>
+
 </html>

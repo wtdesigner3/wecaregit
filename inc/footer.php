@@ -232,9 +232,9 @@ $brandfetch = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `tbl_service
                         <label>Phone Number</label>
                         <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
                     </div>
-                        <div class="recaptcha-wrap">
-                            <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
-                        </div>
+                    <div class="recaptcha-wrap">
+                        <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
+                    </div>
                     <button type="submit" name="submit2" class="footer-submit-btn">
                         Request Call Back
                         <svg viewBox="0 0 24 24">

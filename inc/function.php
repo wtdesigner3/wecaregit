@@ -6,7 +6,7 @@ if ($_SERVER['SERVER_NAME'] == "localhost") {
     $dbpassword = "";
     $dbname = "wecarede_wecaredb";
 
-    define('BASE_URL', 'http://localhost/wecarefix/');
+    define('BASE_URL', 'http://lo calhost/wecarefix/');
     define('SITE_NAME', 'We Care HealthCare');
     define('RECAPTCHA_SITE_KEY', '6LcrypssAAAAALRzkkhD0621NtKURCnSc8rErNCo');
     define('RECAPTCHA_SECRET_KEY', '6LcrypssAAAAAOcp7IyrY3y1tMFgONOuSdcagHSA');

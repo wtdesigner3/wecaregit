@@ -15,7 +15,7 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-
+ 
 # ─── Pretty URL Rules ──────────────────────────────────────────────────────
 RewriteRule ^blog-detail/([a-zA-Z0-9-/]+)$ single-post.php?url=$1 [L]
 RewriteRule ^brands/([^/\.]+)/?$ brands.php?url=$1 [L]

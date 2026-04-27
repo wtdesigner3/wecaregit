@@ -1,6 +1,6 @@
 <?php require('inc/function.php');
 
-$vqry = mysqli_query($conn, "SELECT * FROM `tbl_tc` WHERE `abt_id`='1'"); 
+$vqry = mysqli_query($conn, "SELECT * FROM `tbl_tc` WHERE `abt_id`='1'");
 $venfetch = mysqli_fetch_array($vqry);
 
 ?>
@@ -24,9 +24,9 @@ $venfetch = mysqli_fetch_array($vqry);
 
 	<!-- PRELOADER SPINNER
 		============================================= -->
-	  <div id="loader-wrapper">
-        <div id="loader"></div>
-    </div>
+	<div id="loader-wrapper">
+		<div id="loader"></div>
+	</div>
 
 
 	<!-- PAGE CONTENT
