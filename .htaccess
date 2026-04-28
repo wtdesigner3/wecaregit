@@ -1,5 +1,13 @@
 RewriteEngine On
 
+# ─── Force HTTPS + Strip www ───────────────────────────────────────────────
+# This must be at the very top
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
 # ─── Serve real files directly (fixes favicon) ───
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
@@ -11,13 +19,6 @@ RewriteRule ^sitemap\.xml$ generate-sitemap.php [L]
 # ─── Error Pages ───────────────────────────────────────────────────────────
 ErrorDocument 404 https://wecaredentist.com/404
 ErrorDocument 403 https://wecaredentist.com/404
-
-# ─── Force HTTPS + Strip www ───────────────────────────────────────────────
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
-
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
  
 # ─── Pretty URL Rules ──────────────────────────────────────────────────────
 RewriteRule ^blog-detail/([a-zA-Z0-9-/]+)$ single-post.php?url=$1 [L]
