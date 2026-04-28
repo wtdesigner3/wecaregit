@@ -5,6 +5,12 @@ $url = $_GET['url'];
 $blogData = mysqli_query($conn, "SELECT * FROM `tbl_blogs` WHERE b_url='$url'");
 $blog = mysqli_fetch_assoc($blogData);
 
+// Redirect to 404 if blog not found
+if (!$blog) {
+    header("Location: " . BASE_URL . "404");
+    exit();
+}
+
 // Recent posts (excluding current)
 $recentBlogs = mysqli_query($conn, "SELECT * FROM `tbl_blogs` WHERE b_id!='$blog[b_id]' AND b_status='1' ORDER BY b_date DESC LIMIT 6");
 

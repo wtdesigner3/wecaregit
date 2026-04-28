@@ -1,9 +1,12 @@
 RewriteEngine On
 
-# ─── Serve real files directly (fixes sitemap.xml, robots.txt, favicon) ───
+# ─── Serve real files directly (fixes favicon) ───
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# ─── Dynamic Sitemap ──────────────────────────────────────────────────────
+RewriteRule ^sitemap\.xml$ generate-sitemap.php [L]
 
 # ─── Error Pages ───────────────────────────────────────────────────────────
 ErrorDocument 404 https://wecaredentist.com/404

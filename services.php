@@ -4,7 +4,13 @@ $bname = $_GET["url"];
 $pdetaildata = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `url`='" . $bname . "'");
 $pdetailrec = mysqli_fetch_array($pdetaildata);
 
-$pdetaildata1 = mysqli_query($conn, "SELECT * FROM `tbl_servicespage` WHERE `id`='" . $bname . "'");
+// Redirect to 404 if service not found
+if (!$pdetailrec) {
+    header("Location: " . BASE_URL . "404");
+    exit();
+}
+
+$pdetaildata1 = mysqli_query($conn, "SELECT * FROM `tbl_servicespage` WHERE `id`='" . $pdetailrec['id'] . "'");
 $pdetailrec1 = mysqli_fetch_array($pdetaildata1);
 $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
