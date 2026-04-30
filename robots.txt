@@ -1,5 +1,8 @@
 User-agent: *
-Disallow: 
 Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /ajax/
+Disallow: /mail/
+Allow: /
+
 Sitemap: https://wecaredentist.com/sitemap.xml
- 

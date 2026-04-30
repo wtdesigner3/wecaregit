@@ -7,7 +7,8 @@ $blog = mysqli_fetch_assoc($blogData);
 
 // Redirect to 404 if blog not found
 if (!$blog) {
-    header("Location: " . BASE_URL . "404");
+    header("HTTP/1.1 404 Not Found");
+    include('404.php');
     exit();
 }
 

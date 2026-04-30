@@ -6,7 +6,8 @@ $pdetailrec = mysqli_fetch_array($pdetaildata);
 
 // Redirect to 404 if service not found
 if (!$pdetailrec) {
-    header("Location: " . BASE_URL . "404");
+    header("HTTP/1.1 404 Not Found");
+    include('404.php');
     exit();
 }
 
