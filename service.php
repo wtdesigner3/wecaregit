@@ -984,7 +984,7 @@ $coninfo = mysqli_fetch_array($con);
                     <div class="col-md-6">
                         <div class="hero-content-left">
                             <span class="hero-tag">Expert Dental Care</span>
-                            <h1>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h1>
+                            <h2>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h2>
                             <p><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 200)) ?>...</p>
                             <a href="javascript:void(0)" class="btn-primary-teal" onclick="openModal()">
                                 Book Appointment
@@ -1010,7 +1010,23 @@ $coninfo = mysqli_fetch_array($con);
             <div class="">
                 <div class="row sidebar-row">
 
-                    <!-- LEFT SIDEBAR (sticky) -->
+                    <!-- MAIN DESCRIPTION (Now on the left) -->
+                    <div class="col-lg-8">
+                        <div class="description-card">
+                            <div class="desc-header">
+                                <div class="desc-header-icon">🦷</div>
+                                <div class="desc-header-text">
+                                    <h2><?= $pdetailrec['heading']; ?></h2>
+                                    <p>WeCare Dental Clinic, Jamshedpur</p>
+                                </div>
+                            </div>
+                            <div class="description-body">
+                                <?= $pdetailrec['des'] ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SIDEBAR (Now on the right) -->
                     <div class="col-lg-4 sidebar-col">
                         <div class="sidebar-sticky-wrap">
                             <div class="sidebar-card">
@@ -1044,22 +1060,29 @@ $coninfo = mysqli_fetch_array($con);
                                     </a>
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MAIN DESCRIPTION -->
-                    <div class="col-lg-8">
-                        <div class="description-card">
-                            <div class="desc-header">
-                                <div class="desc-header-icon">🦷</div>
-                                <div class="desc-header-text">
-                                    <h2><?= $pdetailrec['heading']; ?></h2>
-                                    <p>WeCare Dental Clinic, Jamshedpur</p>
+                                <!-- Relocated Enquiry Form -->
+                                <div class="sidebar-enquiry-block" style="padding: 28px; border-top: 1px solid var(--border);">
+                                    <h3 class="sidebar-block-title" style="margin-bottom: 20px;">Quick Enquiry</h3>
+                                    <form method="POST" action="<?= BASE_URL; ?>mail/contactMail" name="sidebarEnquiryForm">
+                                        <div class="mb-3">
+                                            <label class="form-label-float">Your Name</label>
+                                            <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label-float">Phone Number</label>
+                                            <input type="tel" name="phone" class="form-control" placeholder="Phone" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label-float">Your Message</label>
+                                            <textarea name="message" class="form-control" placeholder="Message" style="min-height: 80px;"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
+                                        </div>
+                                        <button type="submit" class="btn-submit-teal" style="width: 100%; justify-content: center;">Send Enquiry</button>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="description-body">
-                                <?= $pdetailrec['des'] ?>
+
                             </div>
                         </div>
                     </div>
@@ -1068,56 +1091,6 @@ $coninfo = mysqli_fetch_array($con);
             </div>
         </section>
 
-        <!-- ENQUIRY SECTION -->
-        <section class="enquiry-section">
-            <div class="container">
-                <div class="enquiry-inner text-center">
-                    <span class="enquiry-badge">✉ Get in Touch</span>
-                    <h2 class="enquiry-title">Send Us a Quick Enquiry</h2>
-                    <p class="enquiry-sub">Have a question about our services? Fill in the form and we'll get back to
-                        you shortly.</p>
-                </div>
-                <div class="enquiry-inner">
-                    <div class="enquiry-form-card">
-                        <form method="POST" action="<?= BASE_URL; ?>mail/contactMail" name="enquiryForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label-float">Your Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label-float">Phone Number</label>
-                                    <input type="tel" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX"
-                                        required>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label-float">Email Address</label>
-                                    <input type="email" name="email" class="form-control" placeholder="you@example.com"
-                                        required>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label-float">Your Message</label>
-                                    <textarea name="message" class="form-control"
-                                        placeholder="How can we help you?"></textarea>
-                                </div>
-                                <div class="col-md-12 mb-4">
-                                    <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn-submit-teal">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                            <path d="M2 8l12 0M10 4l4 4-4 4" stroke="#fff" stroke-width="1.8"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        Send Enquiry
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- BOOKING MODAL -->
         <div id="bookingModal">
@@ -1133,12 +1106,10 @@ $coninfo = mysqli_fetch_array($con);
                     <form method="POST" action="<?= BASE_URL; ?>mail/contactMail">
                         <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
-                        <input type="email" name="email" class="form-control" placeholder="Email Address *" required>
+                        <input type="text" name="location" class="form-control" placeholder="Your Location *" required>
+                        <div class="mb-2"><label style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Appointment Date *</label></div>
+                        <input type="date" name="app_date" class="form-control" required min="<?= date('Y-m-d') ?>">
                         <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
-                        <!-- <select class="form-control" name="patient">
-                            <option>New Patient</option>
-                            <option>Returning Patient</option>
-                        </select> -->
                         <div class="mb-3">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
                         </div>
