@@ -222,15 +222,6 @@ $coninfo = mysqli_fetch_array($con);
         }
 
         /* ── SIDEBAR ── */
-        .sidebar-col {
-            position: relative;
-        }
-
-        .sidebar-sticky-wrap {
-            position: sticky;
-            top: 90px;
-        }
-
         .sidebar-card {
             background: var(--bg-white);
             border-radius: var(--radius-lg);
@@ -407,14 +398,14 @@ $coninfo = mysqli_fetch_array($con);
 
         .description-body ul li {
             position: relative;
-            padding: 10px 14px 10px 44px;
+            padding: 11px 14px 11px 48px;
             margin-bottom: 8px;
             background: var(--bg-light);
             border-radius: var(--radius-sm);
             border-left: 3px solid var(--primary);
             font-size: 15px;
             color: var(--text-body);
-            line-height: 1.6;
+            line-height: 1.65;
             transition: var(--transition);
         }
 
@@ -426,21 +417,17 @@ $coninfo = mysqli_fetch_array($con);
         .description-body ul li::before {
             content: '';
             position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            background: var(--primary);
+            left: 13px;
+            top: 13px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--primary);
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 10px;
-            background-color: var(--primary);
+            background-size: 10px 9px;
+            flex-shrink: 0;
         }
 
         /* Nested ul */
@@ -452,12 +439,16 @@ $coninfo = mysqli_fetch_array($con);
             background: #fff;
             border-left-color: var(--primary-mid);
             font-size: 14px;
+            padding-left: 44px;
         }
 
         .description-body ul ul li::before {
-            background-color: var(--primary-mid);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Ccircle cx='4' cy='4' r='2.5' fill='%231e8c8b'/%3E%3C/svg%3E");
-            background-size: 8px;
+            width: 16px;
+            height: 16px;
+            top: 13px;
+            background-color: #fff;
+            border: 2px solid var(--primary);
+            background-image: none;
         }
 
         /* Ordered list */
@@ -471,13 +462,13 @@ $coninfo = mysqli_fetch_array($con);
         .description-body ol li {
             counter-increment: ol-counter;
             position: relative;
-            padding: 10px 14px 10px 52px;
+            padding: 11px 14px 11px 52px;
             margin-bottom: 8px;
             background: var(--bg-light);
             border-radius: var(--radius-sm);
             font-size: 15px;
             color: var(--text-body);
-            line-height: 1.6;
+            line-height: 1.65;
             transition: var(--transition);
         }
 
@@ -488,17 +479,13 @@ $coninfo = mysqli_fetch_array($con);
         .description-body ol li::before {
             content: counter(ol-counter);
             position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
+            left: 13px;
+            top: 11px;
             width: 26px;
             height: 26px;
             background: var(--primary);
             color: #fff;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 12px;
             font-weight: 700;
             font-family: var(--font-body);
@@ -509,6 +496,15 @@ $coninfo = mysqli_fetch_array($con);
         /* Sticky sidebar — requires row to be align-items: flex-start */
         .sidebar-row {
             align-items: flex-start !important;
+        }
+
+        .sidebar-col {
+            height: fit-content;
+        }
+
+        .sidebar-sticky-wrap {
+            position: sticky;
+            top: 100px;
         }
 
         .desc-header {
@@ -582,20 +578,6 @@ $coninfo = mysqli_fetch_array($con);
 
         .description-body p {
             margin-bottom: 18px;
-        }
-
-        .description-body ul li,
-        .description-body ol li {
-            margin-bottom: 10px;
-            padding-left: 6px;
-        }
-
-        .description-body ul {
-            padding-left: 20px;
-        }
-
-        .description-body ul li::marker {
-            color: var(--primary);
         }
 
         .description-body strong {
@@ -755,9 +737,26 @@ $coninfo = mysqli_fetch_array($con);
             border-radius: var(--radius-xl);
             width: 94%;
             max-width: 480px;
-            overflow: hidden;
+            overflow: visible;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
             animation: modalSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 24px 28px 22px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .modal-body {
+            padding: 28px 32px 32px;
+            background: #fff;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            overflow: visible;
         }
 
         @keyframes modalSlideIn {
@@ -823,10 +822,6 @@ $coninfo = mysqli_fetch_array($con);
             background: rgba(255, 255, 255, 0.35);
         }
 
-        .modal-body {
-            padding: 28px 32px 32px;
-        }
-
         .modal-body .form-control {
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
@@ -889,14 +884,6 @@ $coninfo = mysqli_fetch_array($con);
             .hero-img-right::after {
                 display: none;
             }
-
-            .sidebar-sticky-wrap {
-                position: static;
-            }
-
-            .sidebar-col {
-                margin-bottom: 30px;
-            }
         }
 
         @media (max-width: 767px) {
@@ -925,7 +912,20 @@ $coninfo = mysqli_fetch_array($con);
             }
 
             .modal-header {
-                padding: 22px 24px 18px;
+                padding: 18px 20px 16px;
+                border-radius: 20px 20px 0 0;
+            }
+
+            .modal-box {
+                border-radius: 20px;
+            }
+
+            .sidebar-col {
+                margin-bottom: 30px;
+            }
+
+            .sidebar-sticky-wrap {
+                position: static !important;
             }
         }
     </style>
