@@ -4341,8 +4341,9 @@ h6 {
     }
 
     .page-hero-inner {
-        padding: 0 24px 5px;
-        position: static;
+        padding: 0 17px 5px;
+        position: absolute;
+        left: 0;
     }
 
     #info-strip {
@@ -4960,7 +4961,10 @@ h6 {
     }
 
     .page-hero {
-        min-height: 272px !important;
+        /* min-height: 272px !important; */
+        height: auto !important;
+        min-height: auto !important;
+        padding: 100px;
     }
 
     .sidebar-services-block,
