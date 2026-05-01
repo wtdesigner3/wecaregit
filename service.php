@@ -518,21 +518,8 @@ $coninfo = mysqli_fetch_array($con);
             z-index: 10;
         }
 
-        /* Safety: if services list is very long, scroll within sidebar */
         .sidebar-services-block {
-            max-height: calc(100vh - 220px);
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-mid) transparent;
-        }
-
-        .sidebar-services-block::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .sidebar-services-block::-webkit-scrollbar-thumb {
-            background: var(--primary-mid);
-            border-radius: 4px;
+            padding: 28px;
         }
 
         .desc-header {
@@ -1060,8 +1047,13 @@ $coninfo = mysqli_fetch_array($con);
                                     </a>
                                 </div>
 
-                                <!-- Relocated Enquiry Form -->
-                                <div class="sidebar-enquiry-block" style="padding: 28px; border-top: 1px solid var(--border);">
+                                </div>
+
+                            </div> <!-- End Sidebar Card 1 -->
+
+                            <!-- SIDEBAR CARD 2: Quick Enquiry Form (Separate Card) -->
+                            <div class="sidebar-card" style="margin-top: 30px; border-radius: var(--radius-lg); background: var(--bg-white); box-shadow: var(--shadow-md); border: 1px solid var(--border); overflow: hidden;">
+                                <div class="sidebar-enquiry-block" style="padding: 28px;">
                                     <h3 class="sidebar-block-title" style="margin-bottom: 20px;">Quick Enquiry</h3>
                                     <form method="POST" action="<?= BASE_URL; ?>mail/contactMail" name="sidebarEnquiryForm">
                                         <div class="mb-3">
@@ -1082,7 +1074,6 @@ $coninfo = mysqli_fetch_array($con);
                                         <button type="submit" class="btn-submit-teal" style="width: 100%; justify-content: center;">Send Enquiry</button>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -1108,7 +1099,8 @@ $coninfo = mysqli_fetch_array($con);
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
                         <input type="text" name="location" class="form-control" placeholder="Your Location *" required>
                         <div class="mb-2"><label style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Appointment Date *</label></div>
-                        <input type="date" name="app_date" class="form-control" required min="<?= date('Y-m-d') ?>">
+                        <input type="text" name="app_date" class="form-control" placeholder="Select Date" required 
+                               onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" min="<?= date('Y-m-d') ?>">
                         <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
                         <div class="mb-3">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
