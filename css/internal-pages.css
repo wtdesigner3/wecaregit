@@ -4341,7 +4341,7 @@ h6 {
     }
 
     .page-hero-inner {
-        padding: 0 24px 20px;
+        padding: 0 24px 5px;
         position: static;
     }
 
@@ -4951,8 +4951,16 @@ h6 {
 }
 
 @media (max-width: 768px) {
+    .sidebar-card {
+        margin-top: 20px !important;
+    }
+
+    .sidebar-col {
+        margin-bottom: 0 !important;
+    }
+
     .page-hero {
-        min-height: 230px !important;
+        min-height: 272px !important;
     }
 
     .sidebar-services-block,
