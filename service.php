@@ -79,7 +79,7 @@ $coninfo = mysqli_fetch_array($con);
            HERO SPLIT SECTION
         ============================================= */
         .service-hero-split {
-            padding: 72px 0 60px;
+            padding: 60px 80px;
             background: var(--bg-white);
         }
 
@@ -213,7 +213,7 @@ $coninfo = mysqli_fetch_array($con);
            MAIN GRID — Sidebar + Content
         ============================================= */
         .service-main-grid {
-            padding: 64px 0 80px;
+            padding: 60px 80px;
             background: var(--bg-light);
             overflow: visible !important;
         }
