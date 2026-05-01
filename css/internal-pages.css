@@ -2374,22 +2374,27 @@ h6 {
 
 /* Blog Detail relocated content styles */
 .post-main-img {
+    height: 350px;
+
     margin-bottom: 32px;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
+
 .post-main-img img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
 }
+
 .post-main-meta {
     margin-bottom: 20px;
     display: flex;
     gap: 12px;
 }
+
 .post-main-title {
     font-family: 'Open Sans', sans-serif;
     font-size: clamp(26px, 4vw, 42px);

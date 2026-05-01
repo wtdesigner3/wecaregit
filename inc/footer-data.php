@@ -5,25 +5,25 @@ $coninfo = mysqli_fetch_array($con);
 ?> 
 		<div class="s-soft">
 			<?php if ($coninfo['con_facebook'] != '') { ?>
-				<a href="<?= $coninfo['con_facebook']; ?>" class="s-item facebook" target="_blank">
-				<span class="fa fa-facebook"></span>
-				</a><?php } ?>
+					<a href="<?= $coninfo['con_facebook']; ?>" class="s-item facebook" target="_blank">
+					<span class="fa fa-facebook"></span>
+					</a><?php } ?>
 			<?php if ($coninfo['con_twitter'] != '') { ?>
-				<a href="<?= $coninfo['con_twitter']; ?>" class="s-item twitter" target="_blank">
-				<span class="fa fa-twitter"></span>
-				</a><?php } ?>
+					<a href="<?= $coninfo['con_twitter']; ?>" class="s-item twitter" target="_blank">
+					<span class="fa fa-twitter"></span>
+					</a><?php } ?>
 			<?php if ($coninfo['con_whatsapp'] != '') { ?>
-				<a href="https://api.whatsapp.com/send?phone=<?= $coninfo['con_whatsapp']; ?>&amp;text=Hello%20Please%20call%20me%20back%20to%20discuss%20more" class="s-item whatsapp" target="_blank">
-				<span class="fa fa-whatsapp"></span>
-				</a><?php } ?>
+					<a href="https://api.whatsapp.com/send?phone=<?= $coninfo['con_whatsapp']; ?>&amp;text=Hello%20Please%20call%20me%20back%20to%20discuss%20more" class="s-item whatsapp" target="_blank">
+					<span class="fa fa-whatsapp"></span>
+					</a><?php } ?>
 			<?php if ($coninfo['con_linkedin'] != '') { ?>
-				<a href="<?= $coninfo['con_linkedin']; ?>" class="s-item linkedin" target="_blank">
-				<span class="fa fa-linkedin"></span>
-				</a><?php } ?>
+					<a href="<?= $coninfo['con_linkedin']; ?>" class="s-item linkedin" target="_blank">
+					<span class="fa fa-linkedin"></span>
+					</a><?php } ?>
 			<?php if ($coninfo['con_instagram'] != '') { ?>	
-				<a href="<?= $coninfo['con_instagram']; ?>" class="s-item instagram" target="_blank">
-				<span class="fa fa-instagram"></span>
-				</a><?php } ?>
+					<a href="<?= $coninfo['con_instagram']; ?>" class="s-item instagram" target="_blank">
+					<span class="fa fa-instagram"></span>
+					</a><?php } ?>
 			 
 		</div>
 		<a class="call_me" href="https://api.whatsapp.com/send?phone=<?= $coninfo['con_whatsapp']; ?>&amp;text=Hello%20Please%20call%20me%20back%20to%20discuss%20more" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>	
@@ -107,23 +107,23 @@ $coninfo = mysqli_fetch_array($con);
 </script>
 		<script type="text/javascript">
 		 <?php if (isset($_SESSION['success'])) { ?>
-			  $.toast({
-					text: '<?php echo $_SESSION['success']; ?>',
-					heading: 'Success',
-					showHideTransition: 'slide',
-					icon: 'success'
-				});
+				  $.toast({
+						text: '<?php echo $_SESSION['success']; ?>',
+						heading: 'Success',
+						showHideTransition: 'slide',
+						icon: 'success'
+					});
 	<?php }
 		 unset($_SESSION['success']); ?> 
 	
 	
 	<?php if (isset($_SESSION['error'])) { ?>	
-			  $.toast({
-					text: '<?php echo $_SESSION['error']; ?>',
-					heading: 'Error',
-					showHideTransition: 'slide',
-					icon: 'error'
-				});
+				  $.toast({
+						text: '<?php echo $_SESSION['error']; ?>',
+						heading: 'Error',
+						showHideTransition: 'slide',
+						icon: 'error'
+					});
 	<?php }
 	unset($_SESSION['error']); ?>   
 	
@@ -143,3 +143,19 @@ $(window).scroll(function(){
 
 
 </script>
+  <script>
+		function openModal() {
+			const modal = document.getElementById('bookingModal');
+			modal.classList.add('open');
+			document.body.style.overflow = 'hidden';
+		}
+		function closeModal() {
+			const modal = document.getElementById('bookingModal');
+			modal.classList.remove('open');
+			document.body.style.overflow = 'auto';
+		}
+		window.onclick = function (event) {
+			const modal = document.getElementById('bookingModal');
+			if (event.target === modal) closeModal();
+		}
+	</script>
