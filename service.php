@@ -70,6 +70,10 @@ $coninfo = mysqli_fetch_array($con);
             background: var(--bg-white);
         }
 
+        #page {
+            overflow: visible !important;
+        }
+
         /* =============================================
            BREADCRUMB / PAGE HERO — kept as original
         ============================================= */
@@ -825,7 +829,7 @@ $coninfo = mysqli_fetch_array($con);
         .modal-body .form-control {
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 12px 16px;
+            /* padding: 12px 16px; */
             font-family: var(--font-body);
             font-size: 14px;
             color: var(--text-dark);
