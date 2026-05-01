@@ -56,7 +56,7 @@ h5,
 h6,
 p.header-widget-phone,
 span.section-id {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 #info-6,
