@@ -28,7 +28,8 @@ $coninfo = mysqli_fetch_array($con);
     <meta name="keywords" content="<?= htmlspecialchars($pdetailrec['keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="<?= $canonical_url ?>" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -54,14 +55,10 @@ $coninfo = mysqli_fetch_array($con);
             --radius-md: 14px;
             --radius-lg: 22px;
             --radius-xl: 32px;
-            --font-display: 'Open Sans', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'DM Sans', sans-serif;
             --container-max: 1200px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            font-family: 'Open Sans', sans-serif !important;
         }
 
         /* =============================================
@@ -73,23 +70,6 @@ $coninfo = mysqli_fetch_array($con);
             background: var(--bg-white);
         }
 
-        #page {
-            overflow: visible !important;
-        }
-
-        /* Ensure parents don't clip the sticky sidebar */
-        html,
-        body {
-            overflow: visible !important;
-            height: auto !important;
-        }
-
-        section,
-        .container,
-        .row {
-            overflow: visible !important;
-        }
-
         /* =============================================
            BREADCRUMB / PAGE HERO — kept as original
         ============================================= */
@@ -99,7 +79,7 @@ $coninfo = mysqli_fetch_array($con);
            HERO SPLIT SECTION
         ============================================= */
         .service-hero-split {
-            padding: 60px 80px;
+            padding: 72px 0 60px;
             background: var(--bg-white);
         }
 
@@ -233,19 +213,21 @@ $coninfo = mysqli_fetch_array($con);
            MAIN GRID — Sidebar + Content
         ============================================= */
         .service-main-grid {
-            padding: 60px 80px;
+            padding: 64px 0 80px;
             background: var(--bg-light);
+            overflow: visible !important;
         }
 
         .service-main-grid .container {
             max-width: var(--container-max);
+            overflow: visible !important;
         }
 
         /* ── SIDEBAR ── */
         .sidebar-card {
             background: var(--bg-white);
             border-radius: var(--radius-lg);
-            overflow: hidden;
+            overflow: visible;
             box-shadow: var(--shadow-md);
             border: 1px solid var(--border);
         }
@@ -513,22 +495,44 @@ $coninfo = mysqli_fetch_array($con);
             text-align: center;
         }
 
-        /* Sticky sidebar — requires row to be align-items: flex-start */
+        /* =============================================
+           STICKY SIDEBAR — Bulletproof Fix
+           Bootstrap .row uses display:flex + align-items:stretch
+           which forces col height = tallest sibling → breaks sticky.
+           Fix: override row alignment + set col to self-start.
+           Also: overflow:hidden on any ancestor kills sticky — override.
+        ============================================= */
         .sidebar-row {
-            display: flex !important;
             align-items: flex-start !important;
         }
 
         .sidebar-col {
-            height: auto !important;
+            align-self: flex-start !important;
+            position: relative;
         }
 
         .sidebar-sticky-wrap {
             position: -webkit-sticky;
-            /* for Safari */
             position: sticky;
-            top: 100px;
+            top: 110px;
             z-index: 10;
+        }
+
+        /* Safety: if services list is very long, scroll within sidebar */
+        .sidebar-services-block {
+            max-height: calc(100vh - 220px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-mid) transparent;
+        }
+
+        .sidebar-services-block::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-services-block::-webkit-scrollbar-thumb {
+            background: var(--primary-mid);
+            border-radius: 4px;
         }
 
         .desc-header {
@@ -849,7 +853,7 @@ $coninfo = mysqli_fetch_array($con);
         .modal-body .form-control {
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
-            /* padding: 12px 16px; */
+            padding: 12px 16px;
             font-family: var(--font-body);
             font-size: 14px;
             color: var(--text-dark);
@@ -975,7 +979,7 @@ $coninfo = mysqli_fetch_array($con);
 
         <!-- HERO SPLIT SECTION -->
         <section class="service-hero-split">
-            <div class="">
+            <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="hero-content-left">
@@ -1003,7 +1007,7 @@ $coninfo = mysqli_fetch_array($con);
 
         <!-- MAIN GRID: SIDEBAR + DESCRIPTION -->
         <section class="service-main-grid">
-            <div class="">
+            <div class="container">
                 <div class="row sidebar-row">
 
                     <!-- LEFT SIDEBAR (sticky) -->
@@ -1129,12 +1133,11 @@ $coninfo = mysqli_fetch_array($con);
                     <form method="POST" action="<?= BASE_URL; ?>mail/contactMail">
                         <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
-                        <input type="email" name="email" class="form-control" placeholder="Email Id *" required>
                         <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
-                        <!-- <select class="form-control" name="patient">
+                        <select class="form-control" name="patient">
                             <option>New Patient</option>
                             <option>Returning Patient</option>
-                        </select> -->
+                        </select>
                         <div class="mb-3">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
                         </div>
