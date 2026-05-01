@@ -985,7 +985,7 @@ $coninfo = mysqli_fetch_array($con);
                         <div class="hero-content-left">
                             <span class="hero-tag">Expert Dental Care</span>
                             <h1>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h1>
-                            <p><?= htmlspecialchars(strip_tags($pdetailrec['des'])) ?></p>
+                            <p><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 200)) ?>...</p>
                             <a href="javascript:void(0)" class="btn-primary-teal" onclick="openModal()">
                                 Book Appointment
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
