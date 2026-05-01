@@ -212,7 +212,7 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
                     </div>
                     <h4>Book an Appointment</h4>
                     <p>Ready for a healthier smile? Schedule your visit with our expert team today.</p>
-                    <a href="#" onclick="openModal()" class="cta-btn">Book Now</a>
+                    <a href="javascript:void(0)" onclick="openModal()" class="cta-btn">Book Now</a>
                 </div>
 
                 <!-- Recent Posts -->
