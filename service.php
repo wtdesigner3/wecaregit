@@ -1088,8 +1088,8 @@ $coninfo = mysqli_fetch_array($con);
             <div class="modal-box">
                 <div class="modal-header">
                     <div class="modal-header-text">
-                        <h3>Book an Appointment</h3>
-                        <p>Schedule your visit for <?= $pdetailrec['heading'] ?></p>
+                        <h3>Book <?= $pdetailrec['heading'] ?></h3>
+                        <p>WeCare Dental Clinic, Jamshedpur</p>
                     </div>
                     <button class="modal-close-btn" onclick="closeModal()">×</button>
                 </div>
@@ -1098,8 +1098,7 @@ $coninfo = mysqli_fetch_array($con);
                         <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
                         <input type="text" name="location" class="form-control" placeholder="Your Location *" required>
-                        <div class="mb-2"><label style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Appointment Date *</label></div>
-                        <input type="text" name="app_date" class="form-control" placeholder="Select Date" required 
+                        <input type="text" name="app_date" class="form-control" placeholder="Appointment Date *" required 
                                onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" min="<?= date('Y-m-d') ?>">
                         <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
                         <div class="mb-3">
