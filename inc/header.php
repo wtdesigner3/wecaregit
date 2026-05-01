@@ -223,8 +223,8 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>">Home</a></li>
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
-      <!-- Services accordion (Hidden temporarily) -->
-      <li style="display:none;">
+      <!-- Services accordion -->
+      <li>
         <button class="drawer-accordion-btn" data-target="drawer-services">
           Services
           <svg viewBox="0 0 24 24">
@@ -248,7 +248,7 @@ $proinfo = mysqli_fetch_array($conqry);
       </li>
 
       <!-- Our Services accordion (Static) -->
-      <li>
+      <li class="d-none">
         <button class="drawer-accordion-btn" data-target="drawer-our-services">
           Our Services
           <svg viewBox="0 0 24 24">
