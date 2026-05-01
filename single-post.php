@@ -30,11 +30,6 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
     <meta name="robots" content="index, follow" />
     <?= $blog['head_detail'] ?>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
 
 
 
@@ -57,40 +52,18 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
 
 
         <!-- ═══════════════════════════════════════
-         POST HERO
+         PAGE HERO
     ═══════════════════════════════════════ -->
-        <div class="post-hero <?= empty($blog['b_image']) ? 'no-img' : ''; ?>">
-            <?php if (!empty($blog['b_image'])): ?>
-                <div class="post-hero-bg">
-                    <img loading="eager" src="<?= BASE_URL; ?>uploads/blogs/<?= $blog['b_image']; ?>"
-                        alt="<?= $blog['alt']; ?>">
-                    <div class="post-hero-overlay"></div>
-                </div>
-            <?php endif; ?>
-
-            <div class="post-hero-inner">
+        <div class="page-hero">
+            <div class="page-hero-inner">
                 <nav class="breadcrumb-nav">
                     <a href="<?= BASE_URL; ?>">Home</a>
                     <span class="breadcrumb-sep">›</span>
                     <a href="<?= BASE_URL; ?>blog">Blog</a>
                     <span class="breadcrumb-sep">›</span>
-                    <span><?= mb_strimwidth($blog['b_title'], 0, 50, '…'); ?></span>
+                    <span><?= mb_strimwidth($blog['b_title'] ?? '', 0, 50, '…'); ?></span>
                 </nav>
-
-                <div class="post-hero-meta">
-                    <span class="meta-pill">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="4" width="18" height="18" rx="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                        </svg>
-                        <?= date("M d, Y", strtotime($blog['b_date'])); ?>
-                    </span>
-                    <span class="meta-pill">Dental Health</span>
-                </div>
-
-                <h1><?= $blog['b_title']; ?></h1>
+                <h1>Blog</h1>
             </div>
         </div>
 
@@ -166,6 +139,27 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
 
             <!-- ── ARTICLE ── -->
             <article class="article-body">
+                <?php if (!empty($blog['b_image'])): ?>
+                    <div class="post-main-img">
+                        <img src="<?= BASE_URL; ?>uploads/blogs/<?= $blog['b_image']; ?>" alt="<?= $blog['alt']; ?>">
+                    </div>
+                <?php endif; ?>
+
+                <div class="post-main-meta">
+                    <span class="meta-pill">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <?= date("M d, Y", strtotime($blog['b_date'])); ?>
+                    </span>
+                    <span class="meta-pill">Dental Health</span>
+                </div>
+
+                <h2 class="post-main-title"><?= $blog['b_title']; ?></h2>
+
                 <div class="article-content">
                     <?= $blog['b_description']; ?>
                 </div>

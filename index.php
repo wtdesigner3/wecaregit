@@ -138,11 +138,6 @@ $prof = mysqli_fetch_array($profile);
     <?= $prof['head_detail'] ?>
 
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
 
 </head>
 

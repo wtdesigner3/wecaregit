@@ -28,11 +28,6 @@ $coninfo = mysqli_fetch_array($con);
     <meta name="keywords" content="<?= htmlspecialchars($pdetailrec['keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="<?= $canonical_url ?>" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-
 </head>
 
 <body>

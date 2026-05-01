@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You – We Care Dentist</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --mint: #d6f0eb;
@@ -26,7 +24,7 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             background: var(--cream);
             min-height: 100vh;
             display: flex;
@@ -179,7 +177,7 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 600;
             color: var(--charcoal);

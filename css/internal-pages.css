@@ -17,6 +17,8 @@
     --radius-lg: 24px;
     --radius-xl: 40px;
     --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --font-body: 'Open Sans', sans-serif;
+    --font-display: 'Open Sans', sans-serif;
 }
 
 
@@ -27,7 +29,7 @@
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: var(--cream);
     color: var(--charcoal);
     overflow-x: hidden;
@@ -39,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500;
 } */
 
@@ -155,7 +157,7 @@ h6 {
 }
 
 .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(44px, 6vw, 80px);
     font-weight: 300;
     color: white;
@@ -270,7 +272,7 @@ h6 {
 }
 
 .hero-stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 36px;
     font-weight: 600;
     color: var(--sage-dark);
@@ -335,7 +337,7 @@ h6 {
 }
 
 .badge-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 48px;
     font-weight: 600;
     line-height: 1;
@@ -378,7 +380,7 @@ h6 {
 }
 
 .section-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(32px, 3.5vw, 52px);
     font-weight: 400;
     line-height: 1.2;
@@ -803,7 +805,7 @@ h6 {
 }
 
 .service-card h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 21px;
     font-weight: 500;
     color: var(--charcoal);
@@ -920,7 +922,7 @@ h6 {
 }
 
 .testi-quote {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 30px;
     color: var(--sage-light);
     line-height: 0;
@@ -1159,7 +1161,7 @@ h6 {
 }
 
 .blog-body h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--charcoal);
@@ -1321,7 +1323,7 @@ h6 {
     right: 40px;
     top: 50%;
     transform: translateY(-50%);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 140px;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.03);
@@ -1371,7 +1373,7 @@ h6 {
 }
 
 .page-hero h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(40px, 5.5vw, 76px);
     font-weight: 300;
     color: white;
@@ -1490,7 +1492,7 @@ h6 {
 .contact-info-col {}
 
 .contact-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(30px, 3.5vw, 52px);
     font-weight: 400;
     color: var(--charcoal);
@@ -1639,7 +1641,7 @@ h6 {
 }
 
 .form-card-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 32px;
     font-weight: 500;
     color: var(--charcoal);
@@ -1683,7 +1685,7 @@ h6 {
     padding: 13px 16px;
     border: 1.5px solid rgba(122, 158, 142, 0.2);
     border-radius: 14px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: var(--charcoal);
     background: var(--cream);
@@ -1748,7 +1750,7 @@ h6 {
     border: none;
     padding: 15px 32px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -1928,7 +1930,7 @@ h6 {
 }
 
 .featured-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     color: white;
     line-height: 1.25;
@@ -2051,7 +2053,7 @@ h6 {
 }
 
 .blog-card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 21px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2126,7 +2128,7 @@ h6 {
 }
 
 .empty-state h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 32px;
     font-weight: 400;
     color: var(--charcoal);
@@ -2158,7 +2160,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2207,7 +2209,7 @@ h6 {
 }
 
 .newsletter-inner h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(28px, 3vw, 42px);
     font-weight: 400;
     color: white;
@@ -2240,7 +2242,7 @@ h6 {
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(8px);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: white;
     outline: none;
@@ -2261,7 +2263,7 @@ h6 {
     padding: 14px 32px;
     border-radius: 100px;
     border: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -2363,11 +2365,38 @@ h6 {
 }
 
 .post-hero h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(32px, 4.5vw, 62px);
-    font-weight: 400;
+    font-weight: 700;
     color: white;
     line-height: 1.12;
+}
+
+/* Blog Detail relocated content styles */
+.post-main-img {
+    margin-bottom: 32px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+.post-main-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.post-main-meta {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+}
+.post-main-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+    line-height: 1.25;
 }
 
 
@@ -2497,7 +2526,7 @@ h6 {
 }
 
 .article-content h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 34px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2506,7 +2535,7 @@ h6 {
 }
 
 .article-content h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 26px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2514,7 +2543,7 @@ h6 {
 }
 
 .article-content h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2537,7 +2566,7 @@ h6 {
     margin: 32px 0;
     background: var(--ivory);
     border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-style: italic;
     color: var(--charcoal);
@@ -2569,7 +2598,7 @@ h6 {
 .article-content th {
     background: var(--ivory);
     padding: 12px 16px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--charcoal);
@@ -2642,7 +2671,7 @@ h6 {
 }
 
 .post-nav-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 17px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2672,7 +2701,7 @@ h6 {
 }
 
 .sidebar-title {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -2727,7 +2756,7 @@ h6 {
 .recent-post-info {}
 
 .recent-post-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: var(--charcoal);
@@ -2790,7 +2819,7 @@ h6 {
 }
 
 .cta-card h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     color: white;
     margin-bottom: 10px;
@@ -2931,7 +2960,7 @@ h6 {
 }
 
 .badge-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 44px;
     font-weight: 600;
     color: var(--gold);
@@ -2990,7 +3019,7 @@ h6 {
 }
 
 .sub-card-body h6 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: var(--charcoal);
@@ -3030,7 +3059,7 @@ h6 {
 }
 
 .stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 56px;
     font-weight: 600;
     color: white;
@@ -3086,7 +3115,7 @@ h6 {
     color: var(--charcoal);
     padding: 12px 20px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -3101,7 +3130,7 @@ h6 {
     position: absolute;
     bottom: -12px;
     left: 28px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 120px;
     color: var(--sage-light);
     line-height: 1;
@@ -3111,7 +3140,7 @@ h6 {
 .director-content {}
 
 .director-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(28px, 3vw, 44px);
     font-weight: 500;
     color: var(--charcoal);
@@ -3119,7 +3148,7 @@ h6 {
 }
 
 .director-role {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     color: var(--sage-dark);
     letter-spacing: 0.08em;
@@ -3130,7 +3159,7 @@ h6 {
 }
 
 .director-tagline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-style: italic;
     color: var(--charcoal);
@@ -3290,7 +3319,7 @@ h6 {
     border: none;
     padding: 10px 24px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -3306,7 +3335,7 @@ h6 {
 }
 
 .team-info h5 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--charcoal);
@@ -3498,7 +3527,7 @@ h6 {
 }
 
 .modal-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 32px;
     font-weight: 500;
     color: var(--charcoal);
@@ -3593,7 +3622,7 @@ h6 {
 /* Service heading */
 
 .service-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: clamp(28px, 3vw, 46px);
     font-weight: 400;
     color: var(--charcoal);
@@ -3626,7 +3655,7 @@ h6 {
 .service-content h2,
 .service-content h3,
 .service-content h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--charcoal);
     margin: 32px 0 12px;
     font-weight: 500;
@@ -3683,7 +3712,7 @@ h6 {
     background: var(--ivory);
     padding: 12px 16px;
     text-align: left;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--charcoal);
@@ -3719,7 +3748,7 @@ h6 {
 }
 
 .sidebar-card-title {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -3805,7 +3834,7 @@ h6 {
 }
 
 .appt-card h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 24px;
     color: white;
     margin-bottom: 10px;
@@ -3881,7 +3910,7 @@ h6 {
     padding: 11px 14px;
     border: 1.5px solid rgba(122, 158, 142, 0.2);
     border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     color: var(--charcoal);
     background: var(--cream);
@@ -3907,7 +3936,7 @@ h6 {
     border: none;
     padding: 13px 24px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -4034,7 +4063,7 @@ h6 {
 }
 
 .icon-card-title {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--charcoal);
@@ -4098,7 +4127,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-weight: 600;
     color: var(--sage-dark);
@@ -4111,7 +4140,7 @@ h6 {
 }
 
 .timeline-step h5 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: var(--charcoal);
@@ -4488,7 +4517,7 @@ h6 {
     background: var(--charcoal, #2B2D2F);
     position: relative;
     overflow: hidden;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -4533,7 +4562,7 @@ h6 {
 /* ── Column headings ── */
 
 .footer-col-title {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -4767,7 +4796,7 @@ h6 {
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     color: white;
     outline: none;
@@ -4796,7 +4825,7 @@ h6 {
     border: none;
     padding: 12px 20px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -5157,7 +5186,7 @@ h6 {
 .logo-text-wrap {}
 
 .logo-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: var(--charcoal);
@@ -5195,7 +5224,7 @@ h6 {
     align-items: center;
     gap: 4px;
     padding: 8px 14px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: var(--charcoal);
@@ -5340,7 +5369,7 @@ h6 {
     color: white;
     padding: 10px 22px;
     border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-weight: 500;
     text-decoration: none;
@@ -5513,7 +5542,7 @@ h6 {
     font-size: 15px;
     font-weight: 500;
     color: var(--charcoal);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: none;
     border: none;
     border-radius: 12px;

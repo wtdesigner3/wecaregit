@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 – Page Not Found | We Care Dentist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --mint: #d6f0eb;
@@ -21,7 +20,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             background: var(--cream);
             min-height: 100vh;
             display: flex;
@@ -101,7 +100,7 @@
 
         /* 404 Big number */
         .big-404 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: clamp(5rem, 18vw, 8rem);
             font-weight: 600;
             line-height: 1;
@@ -141,7 +140,7 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 600;
             color: var(--charcoal);
