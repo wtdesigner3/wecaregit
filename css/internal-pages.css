@@ -4329,7 +4329,7 @@ h6 {
     #clients-section,
     .service-main-grid,
     .service-hero-split {
-        padding: 60px 24px;
+        padding: 60px 24px !important;
     }
 
     .hero-indicators {
