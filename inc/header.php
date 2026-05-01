@@ -129,8 +129,8 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>">Home</a></li>
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
-      <!-- Services dropdown -->
-      <li>
+      <!-- Services dropdown (Hidden temporarily) -->
+      <li style="display:none;">
         <a href="javascript:void(0)">
           Services
           <svg class="arrow" viewBox="0 0 24 24">
@@ -152,6 +152,21 @@ $proinfo = mysqli_fetch_array($conqry);
               <?php }
             } ?>
           </div>
+        </div>
+      </li>
+
+      <!-- Our Services (Static for Indexing Test) -->
+      <li>
+        <a href="javascript:void(0)">
+          Our Services
+          <svg class="arrow" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </a>
+        <div class="nav-dropdown">
+          <a href="<?= BASE_URL; ?>gum-treatments" class="dropdown-item">
+            <span class="dropdown-label">Gum Treatments</span>
+          </a>
         </div>
       </li>
 
@@ -208,8 +223,8 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>">Home</a></li>
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
-      <!-- Services accordion -->
-      <li>
+      <!-- Services accordion (Hidden temporarily) -->
+      <li style="display:none;">
         <button class="drawer-accordion-btn" data-target="drawer-services">
           Services
           <svg viewBox="0 0 24 24">
@@ -229,6 +244,21 @@ $proinfo = mysqli_fetch_array($conqry);
               </a>
             <?php }
           } ?>
+        </div>
+      </li>
+
+      <!-- Our Services accordion (Static) -->
+      <li>
+        <button class="drawer-accordion-btn" data-target="drawer-our-services">
+          Our Services
+          <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="drawer-submenu" id="drawer-our-services">
+          <a href="<?= BASE_URL; ?>gum-treatments">
+            Gum Treatments
+          </a>
         </div>
       </li>
 
