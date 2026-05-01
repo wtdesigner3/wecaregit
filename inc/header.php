@@ -161,7 +161,7 @@ $proinfo = mysqli_fetch_array($conqry);
     </ul>
 
     <!-- Book CTA -->
-    <a href="<?= BASE_URL; ?>contact" class="header-cta  d-none d-md-block" onclick="openModal()">
+    <a href="#" class="header-cta  d-none d-md-block" onclick="openModal()">
       <svg viewBox="0 0 24 24">
         <rect x="3" y="4" width="18" height="18" rx="2" />
         <line x1="16" y1="2" x2="16" y2="6" />
@@ -239,7 +239,7 @@ $proinfo = mysqli_fetch_array($conqry);
     </ul>
 
     <div class="drawer-footer">
-      <a href="<?= BASE_URL; ?>contact" class="drawer-cta" onclick="openModal()">Book Appointment</a>
+      <a href="#" class="drawer-cta" onclick="openModal()">Book Appointment</a>
       <?php if (!empty($coninfo['con_phone1'])): ?>
         <a href="tel:<?= $coninfo['con_phone1']; ?>" class="drawer-contact">
           <svg viewBox="0 0 24 24">

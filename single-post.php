@@ -24,7 +24,8 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
 
 <head>
     <?php include 'inc/head.php'; ?>
-    <title><?= htmlspecialchars(($blog['metatag'] != '') ? $blog['metatag'] : $blog['b_title']) ?> || <?= SITE_NAME ?></title>
+    <title><?= htmlspecialchars(($blog['metatag'] != '') ? $blog['metatag'] : $blog['b_title']) ?> || <?= SITE_NAME ?>
+    </title>
     <meta name="description" content="<?= htmlspecialchars($blog['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="keywords" content="<?= htmlspecialchars($blog['metakeyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <meta name="robots" content="index, follow" />
@@ -211,7 +212,7 @@ $nextPost = mysqli_fetch_assoc(mysqli_query($conn, "SELECT b_url, b_title FROM `
                     </div>
                     <h4>Book an Appointment</h4>
                     <p>Ready for a healthier smile? Schedule your visit with our expert team today.</p>
-                    <a href="<?= BASE_URL; ?>contact" class="cta-btn">Book Now</a>
+                    <a href="#" onclick="openModal()" class="cta-btn">Book Now</a>
                 </div>
 
                 <!-- Recent Posts -->
