@@ -19,22 +19,27 @@ $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP
 <html lang="en">
 
 <head>
-    <?php include 'inc/head.php'; ?>
-    <title><?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading']) ?></title>
+
+    <title><?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading']) ?>
+    </title>
     <meta name="description" content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="keywords" content="<?= htmlspecialchars($pdetailrec['keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="<?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading'], ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:description" content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta property="og:title"
+        content="<?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading'], ENT_QUOTES, 'UTF-8') ?>" />
+    <meta property="og:description"
+        content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta property="og:image" content="<?= BASE_URL; ?>uploads/services/<?= $pdetailrec['image']; ?>" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="<?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading'], ENT_QUOTES, 'UTF-8') ?>" />
-    <meta name="twitter:description" content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="twitter:title"
+        content="<?= htmlspecialchars(!empty($pdetailrec['metatag']) ? $pdetailrec['metatag'] : $pdetailrec['heading'], ENT_QUOTES, 'UTF-8') ?>" />
+    <meta name="twitter:description"
+        content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="twitter:image" content="<?= BASE_URL; ?>uploads/services/<?= $pdetailrec['image']; ?>" />
 
     <script type="application/ld+json">
@@ -103,7 +108,7 @@ $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-
+    <?php include 'inc/head.php'; ?>
 </head>
 
 <body>
