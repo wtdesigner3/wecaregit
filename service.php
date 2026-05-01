@@ -174,7 +174,6 @@ $coninfo = mysqli_fetch_array($con);
     <!-- BOOKING MODAL -->
 
 
-    <?php include 'inc/booking-modal.php'; ?>
     <?php include 'inc/footer.php'; ?>
 
     </div><!-- END PAGE -->

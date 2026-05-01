@@ -307,3 +307,4 @@ $brandfetch = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `tbl_service
     </div>
 
 </footer>
+<?php include 'inc/booking-modal.php'; ?>
