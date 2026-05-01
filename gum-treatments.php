@@ -25,7 +25,9 @@
 
 <body>
 
-    <?php include 'inc/header.php'; ?>
+    <header>
+        <h1>Dummy PHP Page for Google Indexing</h1>
+    </header>
 
     <main>
         <section>
@@ -53,9 +55,9 @@
             <p>Visit <a href="https://www.example.com" target="_blank">Example Website</a> for more info.</p>
         </section>
     </main>
-
-    <?php include 'inc/footer.php'; ?>
-    <?php include 'inc/footer-data.php'; ?>
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Test Website. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
