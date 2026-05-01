@@ -130,7 +130,7 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
       <!-- Services dropdown (Hidden temporarily) -->
-      <li style="display:none;">
+      <li>
         <a href="javascript:void(0)">
           Services
           <svg class="arrow" viewBox="0 0 24 24">
@@ -156,7 +156,7 @@ $proinfo = mysqli_fetch_array($conqry);
       </li>
 
       <!-- Our Services (Static for Indexing Test) -->
-      <li>
+      <li class="d-none">
         <a href="javascript:void(0)">
           Our Services
           <svg class="arrow" viewBox="0 0 24 24">
