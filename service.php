@@ -1133,11 +1133,12 @@ $coninfo = mysqli_fetch_array($con);
                     <form method="POST" action="<?= BASE_URL; ?>mail/contactMail">
                         <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
                         <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
+                        <input type="email" name="email" class="form-control" placeholder="Email Address *" required>
                         <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
-                        <select class="form-control" name="patient">
+                        <!-- <select class="form-control" name="patient">
                             <option>New Patient</option>
                             <option>Returning Patient</option>
-                        </select>
+                        </select> -->
                         <div class="mb-3">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
                         </div>
