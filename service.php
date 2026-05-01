@@ -979,7 +979,7 @@ $coninfo = mysqli_fetch_array($con);
 
         <!-- HERO SPLIT SECTION -->
         <section class="service-hero-split">
-            <div class="container">
+            <div class="">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="hero-content-left">
@@ -1007,7 +1007,7 @@ $coninfo = mysqli_fetch_array($con);
 
         <!-- MAIN GRID: SIDEBAR + DESCRIPTION -->
         <section class="service-main-grid">
-            <div class="container">
+            <div class="">
                 <div class="row sidebar-row">
 
                     <!-- LEFT SIDEBAR (sticky) -->
