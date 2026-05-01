@@ -129,10 +129,10 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>">Home</a></li>
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
-      <!-- Services dropdown (Hidden temporarily) -->
+      <!-- Our Services dropdown -->
       <li>
         <a href="javascript:void(0)">
-          Services
+          Our Services
           <svg class="arrow" viewBox="0 0 24 24">
             <polyline points="6 9 12 15 18 9" />
           </svg>
@@ -155,20 +155,6 @@ $proinfo = mysqli_fetch_array($conqry);
         </div>
       </li>
 
-      <!-- Our Services (Static for Indexing Test) -->
-      <li class="d-none">
-        <a href="javascript:void(0)">
-          Our Services
-          <svg class="arrow" viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </a>
-        <div class="nav-dropdown">
-          <a href="<?= BASE_URL; ?>gum-treatments" class="dropdown-item">
-            <span class="dropdown-label">Gum Treatments</span>
-          </a>
-        </div>
-      </li>
 
       <li><a href="<?= BASE_URL; ?>blog">Blog</a></li>
       <li><a href="<?= BASE_URL; ?>contact">Contact</a></li>
@@ -223,10 +209,10 @@ $proinfo = mysqli_fetch_array($conqry);
       <li><a href="<?= BASE_URL; ?>">Home</a></li>
       <li><a href="<?= BASE_URL; ?>about">About Us</a></li>
 
-      <!-- Services accordion -->
+      <!-- Our Services accordion -->
       <li>
         <button class="drawer-accordion-btn" data-target="drawer-services">
-          Services
+          Our Services
           <svg viewBox="0 0 24 24">
             <polyline points="6 9 12 15 18 9" />
           </svg>
@@ -247,20 +233,6 @@ $proinfo = mysqli_fetch_array($conqry);
         </div>
       </li>
 
-      <!-- Our Services accordion (Static) -->
-      <li class="d-none">
-        <button class="drawer-accordion-btn" data-target="drawer-our-services">
-          Our Services
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </button>
-        <div class="drawer-submenu" id="drawer-our-services">
-          <a href="<?= BASE_URL; ?>gum-treatments">
-            Gum Treatments
-          </a>
-        </div>
-      </li>
 
       <li><a href="<?= BASE_URL; ?>blog">Blog</a></li>
       <li><a href="<?= BASE_URL; ?>contact">Contact</a></li>

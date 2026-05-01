@@ -24,7 +24,7 @@ ErrorDocument 403 /404.php
 # ─── Pretty URL Rules ──────────────────────────────────────────────────────
 RewriteRule ^blog-detail/([a-zA-Z0-9-/]+)$ single-post.php?url=$1 [L]
 RewriteRule ^brands/([^/\.]+)/?$ brands.php?url=$1 [L]
-RewriteRule ^services/([^/\.]+)/?$ services.php?url=$1 [L]
+RewriteRule ^services/([^/\.]+)/?$ service.php?url=$1 [L]
 
 # ─── Auto-append .php extension ────────────────────────────────────────────
 RewriteCond %{REQUEST_FILENAME}.php -f

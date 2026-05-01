@@ -12,7 +12,7 @@ $base = rtrim(BASE_URL, '/') . '/';
 $lastmod = date('Y-m-d');
 
 // Static Pages
-$static_pages = ['', 'about', 'services', 'blog', 'contact', 'privacy', 'termsandcondition', 'gum-treatments'];
+$static_pages = ['', 'about', 'services', 'blog', 'contact', 'privacy', 'termsandcondition'];
 foreach ($static_pages as $page) {
     echo '  <url>' . PHP_EOL;
     echo '    <loc>' . $base . $page . '</loc>' . PHP_EOL;
