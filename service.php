@@ -29,1011 +29,675 @@ $coninfo = mysqli_fetch_array($con);
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="<?= $canonical_url ?>" />
 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ═══════════════════════════════════════════
-           WECARE DENTAL — SERVICE PAGE REDESIGN
-           Primary: #00a3c8  |  Dark: #1a2e35
-        ═══════════════════════════════════════════ */
+        /* =============================================
+           CSS VARIABLES — Brand Tokens
+        ============================================= */
         :root {
-            --blue: #00a3c8;
-            --blue-dark: #008caf;
-            --blue-deep: #006f8e;
-            --blue-pale: #e6f6fa;
-            --blue-light: #cceef6;
-            --dark: #1a2e35;
-            --mid: #2c4a54;
-            --text: #444f5a;
-            --muted: #7a8a92;
-            --light-bg: #f4f8fa;
-            --white: #ffffff;
-            --border: #ddeef3;
-            --accent: #ff6b35;
-            --green: #28a745;
-            --shadow-sm: 0 2px 12px rgba(0, 163, 200, 0.08);
-            --shadow-md: 0 8px 32px rgba(0, 163, 200, 0.14);
-            --shadow-lg: 0 20px 60px rgba(0, 163, 200, 0.18);
-            --radius: 14px;
-            --radius-lg: 22px;
+            --primary:        #1e8c8b;
+            --primary-dark:   #156868;
+            --primary-light:  #e6f5f5;
+            --primary-mid:    #c2e8e8;
+            --accent:         #f4a738;
+            --text-dark:      #1a1a2e;
+            --text-body:      #4a5568;
+            --text-muted:     #718096;
+            --bg-light:       #f7fbfb;
+            --bg-white:       #ffffff;
+            --border:         #e2ecec;
+            --shadow-sm:      0 2px 12px rgba(30,140,139,0.08);
+            --shadow-md:      0 8px 32px rgba(30,140,139,0.12);
+            --shadow-lg:      0 20px 60px rgba(30,140,139,0.16);
+            --radius-sm:      8px;
+            --radius-md:      14px;
+            --radius-lg:      22px;
+            --radius-xl:      32px;
+            --font-display:   'DM Serif Display', Georgia, serif;
+            --font-body:      'DM Sans', sans-serif;
+            --container-max:  1200px;
+            --transition:     all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
 
-        /* ── HERO SPLIT ── */
-        .service-hero-split {
-            padding: 0;
-            background: linear-gradient(135deg, #f0fafd 0%, #e6f6fa 40%, #ffffff 100%);
+        /* =============================================
+           BASE RESETS
+        ============================================= */
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--bg-white);
+        }
+
+        /* =============================================
+           BREADCRUMB / PAGE HERO — polished banner
+        ============================================= */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #29b5b4 100%);
+            padding: 56px 0 48px;
             position: relative;
             overflow: hidden;
         }
-
-        .service-hero-split::before {
+        .page-hero::before {
             content: '';
             position: absolute;
-            top: -120px;
-            right: -120px;
-            width: 480px;
-            height: 480px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 163, 200, 0.12) 0%, transparent 70%);
-            pointer-events: none;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-
-        .service-hero-split::after {
+        .page-hero::after {
             content: '';
             position: absolute;
-            bottom: -60px;
-            left: -60px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 163, 200, 0.07) 0%, transparent 70%);
-            pointer-events: none;
+            bottom: -2px; left: 0; right: 0;
+            height: 48px;
+            background: var(--bg-white);
+            clip-path: ellipse(55% 100% at 50% 100%);
         }
-
-        .service-hero-inner {
-            padding: 80px 0 70px;
+        .page-hero-inner {
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+        }
+        .breadcrumb-nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .breadcrumb-nav a:hover { color: #fff; }
+        .breadcrumb-sep { opacity: 0.5; font-size: 16px; }
+        .breadcrumb-nav span:last-child { color: #fff; font-weight: 600; }
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 4vw, 42px);
+            color: #fff;
+            margin: 0;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
         }
 
-        /* Hero left text */
+        /* =============================================
+           HERO SPLIT SECTION
+        ============================================= */
+        .service-hero-split {
+            padding: 72px 0 60px;
+            background: var(--bg-white);
+        }
+        .service-hero-split .container {
+            max-width: var(--container-max);
+        }
         .hero-content-left {
             padding-right: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
-
         .hero-tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--blue-pale);
-            color: var(--blue);
-            font-size: 11px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.12em;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 50px;
             margin-bottom: 20px;
-            border: 1px solid var(--blue-light);
-            width: fit-content;
         }
-
         .hero-tag::before {
             content: '';
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
+            background: var(--primary);
             border-radius: 50%;
-            background: var(--blue);
             display: inline-block;
         }
-
         .hero-content-left h1 {
-            font-size: clamp(28px, 3.5vw, 44px);
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 18px;
+            font-family: var(--font-display);
+            font-size: clamp(30px, 3.5vw, 44px);
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 20px;
             line-height: 1.18;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.5px;
         }
-
         .hero-content-left h1 em {
             font-style: italic;
-            color: var(--blue);
+            color: var(--primary);
         }
-
         .hero-content-left p {
             font-size: 16px;
-            color: var(--text);
+            color: var(--text-body);
             margin-bottom: 32px;
             line-height: 1.75;
-            max-width: 460px;
         }
-
-        .hero-btn-group {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
+        .btn-primary-teal {
+            display: inline-flex;
             align-items: center;
-        }
-
-        .btn-blue-main {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            gap: 10px;
+            background: var(--primary);
             color: #fff !important;
             padding: 14px 32px;
             border-radius: 50px;
-            font-weight: 700;
             font-size: 15px;
+            font-weight: 600;
+            font-family: var(--font-body);
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 24px rgba(0, 163, 200, 0.35);
-            transition: all 0.25s;
             border: none;
             cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 24px rgba(30,140,139,0.3);
         }
-
-        .btn-blue-main:hover {
+        .btn-primary-teal:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 32px rgba(0, 163, 200, 0.45);
+            box-shadow: 0 10px 32px rgba(30,140,139,0.38);
             color: #fff !important;
         }
-
-        .btn-call {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--dark) !important;
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-            transition: color 0.2s;
+        .btn-primary-teal svg {
+            transition: var(--transition);
         }
-
-        .btn-call:hover {
-            color: var(--blue) !important;
+        .btn-primary-teal:hover svg {
+            transform: translateX(3px);
         }
-
-        .btn-call-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--blue-pale);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: background 0.2s;
-        }
-
-        .btn-call:hover .btn-call-icon {
-            background: var(--blue-light);
-        }
-
-        /* Hero stats bar */
-        .hero-stats-bar {
-            display: flex;
-            gap: 0;
-            margin-top: 40px;
-            background: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            width: fit-content;
-        }
-
-        .hero-stat {
-            padding: 16px 28px;
-            text-align: center;
-            border-right: 1px solid var(--border);
-        }
-
-        .hero-stat:last-child {
-            border-right: none;
-        }
-
-        .hero-stat-num {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--blue);
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: 11px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-top: 4px;
-        }
-
-        /* Hero image right */
         .hero-img-right {
             position: relative;
         }
-
+        .hero-img-right::before {
+            content: '';
+            position: absolute;
+            top: -16px; right: -16px;
+            width: 80%; height: 80%;
+            background: var(--primary-light);
+            border-radius: var(--radius-lg);
+            z-index: 0;
+        }
+        .hero-img-right::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; left: -10px;
+            width: 50%; height: 50%;
+            background: var(--primary-mid);
+            border-radius: var(--radius-md);
+            z-index: 0;
+            opacity: 0.5;
+        }
         .hero-img-right img {
+            position: relative;
+            z-index: 1;
             width: 100%;
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-lg);
             display: block;
+            object-fit: cover;
         }
 
-        .hero-img-badge {
-            position: absolute;
-            bottom: -18px;
-            left: 28px;
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 14px 20px;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid var(--border);
-            min-width: 210px;
-        }
-
-        .badge-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--blue-pale), var(--blue-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .badge-text strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .badge-text span {
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .hero-img-tag {
-            position: absolute;
-            top: 20px;
-            right: -14px;
-            background: var(--blue);
-            color: #fff;
-            border-radius: 50px;
-            padding: 8px 18px;
-            font-size: 12px;
-            font-weight: 700;
-            box-shadow: 0 4px 16px rgba(0, 163, 200, 0.4);
-            animation: floatBadge 3s ease-in-out infinite;
-        }
-
-        @keyframes floatBadge {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-
-        /* ── MAIN GRID (description + sidebar) ── */
+        /* =============================================
+           MAIN GRID — Sidebar + Content
+        ============================================= */
         .service-main-grid {
-            padding: 70px 0 80px;
-            background: var(--light-bg);
+            padding: 64px 0 80px;
+            background: var(--bg-light);
+        }
+        .service-main-grid .container {
+            max-width: var(--container-max);
         }
 
-        /* Sidebar */
-        .sidebar-services {
-            background: #fff;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            border: 1px solid var(--border);
+        /* ── SIDEBAR ── */
+        .sidebar-col {
+            position: relative;
+        }
+        .sidebar-sticky-wrap {
             position: sticky;
-            top: 100px;
+            top: 90px;
         }
 
-        .sidebar-header {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-            padding: 22px 26px;
+        .sidebar-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
         }
 
-        .sidebar-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #fff;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* Services list block */
+        .sidebar-services-block {
+            padding: 28px;
         }
-
-        .sidebar-title::before {
-            content: '🦷';
+        .sidebar-block-title {
+            font-family: var(--font-display);
             font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--primary-light);
+            position: relative;
+        }
+        .sidebar-block-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 40px; height: 2px;
+            background: var(--primary);
         }
 
         .sidebar-list {
             list-style: none;
-            padding: 8px 0;
+            padding: 0;
             margin: 0;
         }
-
         .sidebar-list li {
-            margin: 0;
+            margin-bottom: 2px;
         }
-
         .sidebar-list a {
-            color: var(--text);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 26px;
-            text-decoration: none;
+            color: var(--text-body);
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.2s;
-            border-bottom: 1px solid #f0f4f6;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: var(--transition);
+            gap: 8px;
         }
-
-        .sidebar-list a::after {
-            content: '›';
-            font-size: 18px;
-            color: var(--muted);
-            transition: color 0.2s, transform 0.2s;
+        .sidebar-list a .arrow-icon {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+            color: transparent;
+            transition: var(--transition);
+            flex-shrink: 0;
         }
-
         .sidebar-list a:hover,
         .sidebar-list a.active {
-            color: var(--blue);
-            background: var(--blue-pale);
-            padding-left: 32px;
+            background: var(--primary-light);
+            color: var(--primary);
         }
-
-        .sidebar-list a:hover::after,
-        .sidebar-list a.active::after {
-            color: var(--blue);
-            transform: translateX(3px);
+        .sidebar-list a:hover .arrow-icon,
+        .sidebar-list a.active .arrow-icon {
+            background: var(--primary);
+            color: #fff;
         }
-
         .sidebar-list a.active {
             font-weight: 700;
-            border-left: 3px solid var(--blue);
         }
 
-        .sidebar-contact-box {
-            margin: 0;
-            padding: 22px 26px;
-            background: linear-gradient(135deg, #f0fafd 0%, var(--blue-pale) 100%);
-            border-top: 1px solid var(--border);
+        /* Contact CTA block */
+        .sidebar-cta-block {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
         }
-
-        .sidebar-contact-box p {
-            font-size: 12px;
+        .sidebar-cta-block::before {
+            content: '🦷';
+            position: absolute;
+            right: -8px; top: -10px;
+            font-size: 80px;
+            opacity: 0.1;
+            line-height: 1;
+        }
+        .sidebar-cta-block p.cta-label {
+            font-size: 11px;
             font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--muted);
-            margin-bottom: 8px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 6px;
         }
-
-        .sidebar-phone {
+        .sidebar-cta-block p.cta-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .sidebar-cta-block a.cta-phone {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--blue) !important;
-            font-size: 20px;
-            font-weight: 800;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            transition: color 0.2s;
-        }
-
-        .sidebar-phone:hover {
-            color: var(--blue-dark) !important;
-        }
-
-        .sidebar-wa-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 14px;
-            background: #25d366;
-            color: #fff !important;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .sidebar-wa-btn:hover {
-            background: #1da851;
-            transform: translateY(-1px);
-        }
-
-        /* Description content */
-        .description-content {
-            background: #fff;
-            padding: 44px 48px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            line-height: 1.85;
-            color: var(--text);
-            font-size: 15.5px;
-        }
-
-        .description-content h2 {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-top: 36px;
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--blue-pale);
-        }
-
-        .description-content h3 {
-            font-size: 19px;
+            color: #fff;
+            font-size: 18px;
             font-weight: 700;
-            color: var(--mid);
-            margin-top: 28px;
-            margin-bottom: 12px;
+            font-family: var(--font-display);
+            text-decoration: none;
+            transition: var(--transition);
         }
-
-        .description-content h4 {
+        .sidebar-cta-block a.cta-phone .phone-icon {
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             font-size: 16px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-top: 20px;
-            margin-bottom: 8px;
+            flex-shrink: 0;
+            transition: var(--transition);
         }
-
-        .description-content p {
-            margin-bottom: 16px;
+        .sidebar-cta-block a.cta-phone:hover .phone-icon {
+            background: rgba(255,255,255,0.35);
         }
+        .sidebar-cta-block a.cta-phone:hover { color: #fff; opacity: 0.9; }
 
-        .description-content ul {
-            padding-left: 0;
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .description-content ul li {
-            padding: 6px 0 6px 26px;
-            position: relative;
-            color: var(--text);
-        }
-
-        .description-content ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--blue);
-            font-weight: 700;
-        }
-
-        .description-content strong {
-            color: var(--dark);
-        }
-
-        .description-content a {
-            color: var(--blue);
-        }
-
-        /* Why-choose inline highlight strip */
-        .why-strip {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1px;
-            background: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin: 32px 0;
+        /* ── MAIN DESCRIPTION ── */
+        .description-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border);
+            overflow: hidden;
         }
-
-        .why-item {
-            background: var(--blue-pale);
-            padding: 20px 18px;
-            text-align: center;
-        }
-
-        .why-item-icon {
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-
-        .why-item-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--mid);
-            line-height: 1.4;
-        }
-
-        /* ── TRUST BADGES STRIP ── */
-        .trust-strip {
-            background: var(--dark);
-            padding: 30px 0;
-        }
-
-        .trust-inner {
+        .desc-header {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #daf0f0 100%);
+            padding: 28px 36px 22px;
+            border-bottom: 1px solid var(--primary-mid);
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
+            gap: 14px;
         }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .trust-icon {
-            width: 46px;
-            height: 46px;
-            background: rgba(0, 163, 200, 0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+        .desc-header-icon {
+            width: 48px; height: 48px;
+            background: var(--primary);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
             flex-shrink: 0;
         }
-
-        .trust-label {
-            font-size: 14px;
-            font-weight: 600;
+        .desc-header-text h2 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            color: var(--text-dark);
+            margin: 0 0 4px;
+        }
+        .desc-header-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .description-body {
+            padding: 36px;
+            line-height: 1.85;
+            color: var(--text-body);
+            font-size: 15.5px;
+        }
+        .description-body h2,
+        .description-body h3 {
+            font-family: var(--font-display);
+            color: var(--text-dark);
+            margin-top: 36px;
+            margin-bottom: 16px;
             line-height: 1.3;
         }
-
-        .trust-sub {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.45);
+        .description-body h2 { font-size: 26px; }
+        .description-body h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
         }
+        .description-body h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+        .description-body p { margin-bottom: 18px; }
+        .description-body ul li,
+        .description-body ol li {
+            margin-bottom: 10px;
+            padding-left: 6px;
+        }
+        .description-body ul {
+            padding-left: 20px;
+        }
+        .description-body ul li::marker {
+            color: var(--primary);
+        }
+        .description-body strong { color: var(--text-dark); }
+        .description-body a { color: var(--primary); }
 
-        /* ── ENQUIRY SECTION ── */
+        /* =============================================
+           ENQUIRY SECTION
+        ============================================= */
         .enquiry-section {
             padding: 80px 0;
-            background: #fff;
+            background: var(--bg-white);
             position: relative;
-            overflow: hidden;
         }
-
         .enquiry-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--blue) 0%, var(--blue-dark) 100%);
+            background: linear-gradient(90deg, var(--primary), #29b5b4, var(--primary));
         }
-
-        .enquiry-section-title {
-            text-align: center;
-            margin-bottom: 48px;
+        .enquiry-section .container {
+            max-width: var(--container-max);
         }
-
-        .enquiry-section-title .section-tag {
-            display: inline-block;
-            background: var(--blue-pale);
-            color: var(--blue);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 5px 14px;
-            border-radius: 50px;
-            border: 1px solid var(--blue-light);
-            margin-bottom: 14px;
-        }
-
-        .enquiry-section-title h2 {
-            font-size: clamp(22px, 3vw, 34px);
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-
-        .enquiry-section-title p {
-            color: var(--muted);
-            font-size: 15px;
-        }
-
-        .enquiry-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 50px;
-            align-items: start;
-            max-width: 1000px;
+        .enquiry-inner {
+            max-width: 760px;
             margin: 0 auto;
         }
-
-        /* Enquiry info col */
-        .enquiry-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .info-card {
-            background: var(--light-bg);
-            border-radius: var(--radius);
-            padding: 22px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            border: 1px solid var(--border);
-            transition: box-shadow 0.2s;
-        }
-
-        .info-card:hover {
-            box-shadow: var(--shadow-sm);
-        }
-
-        .info-card-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-            border-radius: 14px;
-            display: flex;
+        .enquiry-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(0, 163, 200, 0.3);
-        }
-
-        .info-card-body strong {
-            display: block;
-            font-size: 15px;
+            gap: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 12px;
             font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 14px;
         }
-
-        .info-card-body span {
-            font-size: 13.5px;
-            color: var(--muted);
+        .enquiry-title {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 3vw, 38px);
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .enquiry-sub {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 40px;
             line-height: 1.6;
         }
-
-        .info-card-body a {
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Enquiry form */
-        .enquiry-form-wrap {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--mid) 100%);
-            padding: 40px;
-            border-radius: var(--radius-lg);
+        .enquiry-form-card {
+            background: #fff;
+            border-radius: var(--radius-xl);
+            padding: 48px;
             box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
         }
-
-        .enquiry-form-wrap .form-label-top {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .enquiry-form-wrap .form-control {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            border-radius: 10px;
-            padding: 13px 16px;
+        .enquiry-form-card .form-control {
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 13px 18px;
+            font-family: var(--font-body);
             font-size: 14.5px;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        .enquiry-form-wrap .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .enquiry-form-wrap .form-control:focus {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(0, 163, 200, 0.2);
-            color: #fff;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            transition: var(--transition);
+            width: 100%;
             outline: none;
         }
-
-        .enquiry-form-wrap textarea.form-control {
-            resize: vertical;
-            min-height: 100px;
+        .enquiry-form-card .form-control:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(30,140,139,0.1);
         }
-
-        .btn-submit-form {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-            color: #fff !important;
+        .enquiry-form-card textarea.form-control {
+            resize: vertical;
+            min-height: 110px;
+        }
+        .form-label-float {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .btn-submit-teal {
+            background: var(--primary);
+            color: #fff;
             border: none;
-            padding: 14px 36px;
+            padding: 15px 48px;
             border-radius: 50px;
-            font-weight: 700;
             font-size: 15px;
+            font-weight: 700;
+            font-family: var(--font-body);
             cursor: pointer;
-            width: 100%;
-            box-shadow: 0 6px 20px rgba(0, 163, 200, 0.4);
-            transition: all 0.25s;
-            display: flex;
+            transition: var(--transition);
+            box-shadow: 0 6px 24px rgba(30,140,139,0.3);
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
         }
-
-        .btn-submit-form:hover {
+        .btn-submit-teal:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0, 163, 200, 0.5);
+            box-shadow: 0 10px 32px rgba(30,140,139,0.38);
         }
 
-        /* ── MODAL REDESIGN ── */
+        /* =============================================
+           BOOKING MODAL
+        ============================================= */
         #bookingModal {
             display: none;
             position: fixed;
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 28, 35, 0.75);
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(15,25,40,0.65);
             backdrop-filter: blur(8px);
-            animation: fadeModalIn 0.3s ease;
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
         }
-
-        @keyframes fadeModalIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
+        #bookingModal.open {
+            display: flex;
         }
-
-        .modal-content {
+        .modal-box {
             background: #fff;
-            margin: 4% auto;
-            padding: 0;
-            border-radius: var(--radius-lg);
-            width: 92%;
+            border-radius: var(--radius-xl);
+            width: 94%;
             max-width: 480px;
-            position: relative;
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35);
-            animation: slideModalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+            animation: modalSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
         }
-
-        @keyframes slideModalIn {
-            from {
-                transform: translateY(40px) scale(0.95);
-                opacity: 0
-            }
-
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1
-            }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        .modal-header-bar {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
-            padding: 28px 32px 22px;
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 28px 32px 24px;
             position: relative;
         }
-
-        .modal-header-bar h3 {
-            font-size: 22px;
-            font-weight: 800;
+        .modal-header h3 {
+            font-family: var(--font-display);
+            font-size: 24px;
             color: #fff;
             margin: 0 0 6px;
         }
-
-        .modal-header-bar p {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 14px;
+        .modal-header p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
             margin: 0;
         }
-
-        .close-modal {
+        .modal-close-btn {
             position: absolute;
-            right: 18px;
-            top: 16px;
-            width: 34px;
-            height: 34px;
-            background: rgba(255, 255, 255, 0.18);
+            right: 18px; top: 18px;
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.2);
+            border: none; cursor: pointer;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            line-height: 1;
-            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
             color: #fff;
-            transition: background 0.2s;
-            border: none;
+            font-size: 18px;
+            line-height: 1;
+            transition: var(--transition);
         }
-
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .modal-body-pad {
+        .modal-close-btn:hover { background: rgba(255,255,255,0.35); }
+        .modal-body {
             padding: 28px 32px 32px;
         }
-
-        .modal-body-pad .form-control {
+        .modal-body .form-control {
             border: 1.5px solid var(--border);
-            border-radius: 10px;
-            padding: 13px 16px;
-            font-size: 14.5px;
-            color: var(--dark);
-            transition: border-color 0.2s, box-shadow 0.2s;
-            background: var(--light-bg);
-        }
-
-        .modal-body-pad .form-control:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(0, 163, 200, 0.15);
-            background: #fff;
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            width: 100%;
+            transition: var(--transition);
             outline: none;
+            margin-bottom: 14px;
         }
-
-        .modal-body-pad select.form-control {
+        .modal-body .form-control:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(30,140,139,0.1);
+        }
+        .modal-body select.form-control {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300a3c8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231e8c8b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 14px center;
+            background-position: right 16px center;
             padding-right: 36px;
         }
-
-        .modal-body-pad label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--muted);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            display: block;
-        }
-
         .btn-modal-submit {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            background: var(--primary);
             color: #fff;
             border: none;
-            padding: 15px 24px;
-            border-radius: 50px;
-            font-weight: 700;
+            padding: 14px;
+            border-radius: var(--radius-sm);
             font-size: 15px;
+            font-weight: 700;
+            font-family: var(--font-body);
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 6px 20px rgba(0, 163, 200, 0.35);
-            transition: all 0.25s;
-            margin-top: 6px;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(30,140,139,0.3);
+            margin-top: 4px;
         }
-
         .btn-modal-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0, 163, 200, 0.5);
+            background: var(--primary-dark);
+            box-shadow: 0 8px 28px rgba(30,140,139,0.4);
         }
 
-        /* btn-blue backward compat */
-        .btn-blue {
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%) !important;
-            color: #fff !important;
-            padding: 13px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 22px rgba(0, 163, 200, 0.35);
-            transition: all 0.25s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-blue:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 163, 200, 0.45);
-            color: #fff !important;
-        }
-
-        /* ── RESPONSIVE ── */
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
         @media (max-width: 991px) {
-            .hero-content-left {
-                padding-right: 0;
-                margin-bottom: 40px;
-            }
-
-            .hero-img-tag {
-                right: 10px;
-            }
-
-            .description-content {
-                padding: 28px 24px;
-            }
-
-            .enquiry-layout {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .enquiry-form-wrap {
-                padding: 28px 24px;
-            }
-
-            .trust-inner {
-                gap: 22px;
-            }
+            .hero-content-left { padding-right: 0; margin-bottom: 40px; }
+            .hero-img-right::before, .hero-img-right::after { display: none; }
+            .sidebar-sticky-wrap { position: static; }
+            .sidebar-col { margin-bottom: 30px; }
         }
-
         @media (max-width: 767px) {
-            .service-hero-inner {
-                padding: 50px 0 40px;
-            }
-
-            .hero-stats-bar {
-                flex-wrap: wrap;
-                width: 100%;
-            }
-
-            .hero-stat {
-                flex: 1 1 auto;
-            }
-
-            .hero-img-badge {
-                position: static;
-                margin-top: 20px;
-                width: 100%;
-            }
-
-            .why-strip {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .modal-content {
-                margin: 10% auto;
-            }
-
-            .modal-header-bar,
-            .modal-body-pad {
-                padding: 22px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-stats-bar {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .why-strip {
-                grid-template-columns: 1fr;
-            }
+            .service-hero-split { padding: 48px 0 40px; }
+            .service-main-grid { padding: 40px 0 56px; }
+            .description-body { padding: 24px 20px; }
+            .desc-header { padding: 20px 24px 16px; }
+            .enquiry-form-card { padding: 28px 20px; }
+            .modal-body { padding: 20px 20px 24px; }
+            .modal-header { padding: 22px 24px 18px; }
         }
     </style>
 </head>
@@ -1044,13 +708,13 @@ $coninfo = mysqli_fetch_array($con);
 
         <?php include 'inc/header.php'; ?>
 
-        <!-- ═══════════════════════════════════════
-             BREADCRUMB HERO
-        ═══════════════════════════════════════ -->
+        <!-- BREADCRUMB HERO -->
         <div class="page-hero">
             <div class="page-hero-inner">
                 <nav class="breadcrumb-nav">
                     <a href="<?= BASE_URL; ?>">Home</a>
+                    <span class="breadcrumb-sep">›</span>
+                    <span>Services</span>
                     <span class="breadcrumb-sep">›</span>
                     <span><?= $pdetailrec['heading']; ?></span>
                 </nav>
@@ -1058,144 +722,88 @@ $coninfo = mysqli_fetch_array($con);
             </div>
         </div>
 
-        <!-- ═══════════════════════════════════════
-             HERO SPLIT SECTION
-        ═══════════════════════════════════════ -->
+        <!-- HERO SPLIT SECTION -->
         <section class="service-hero-split">
             <div class="container">
-                <div class="service-hero-inner">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="hero-content-left">
-                                <span class="hero-tag">Expert Dental Care · Jamshedpur</span>
-                                <h1>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h1>
-                                <p><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 210)) ?>...</p>
-                                <div class="hero-btn-group">
-                                    <button class="btn-blue-main" onclick="openModal()">
-                                        📅 Book Appointment
-                                    </button>
-                                    <a href="tel:<?= $coninfo['con_phone1'] ?>" class="btn-call">
-                                        <span class="btn-call-icon">📞</span>
-                                        <?= $coninfo['con_phone1'] ?>
-                                    </a>
-                                </div>
-                                <div class="hero-stats-bar">
-                                    <div class="hero-stat">
-                                        <div class="hero-stat-num">12+</div>
-                                        <div class="hero-stat-label">Yrs Experience</div>
-                                    </div>
-                                    <div class="hero-stat">
-                                        <div class="hero-stat-num">1000+</div>
-                                        <div class="hero-stat-label">Happy Patients</div>
-                                    </div>
-                                    <div class="hero-stat">
-                                        <div class="hero-stat-num">98%</div>
-                                        <div class="hero-stat-label">Satisfaction</div>
-                                    </div>
-                                    <div class="hero-stat">
-                                        <div class="hero-stat-num">20+</div>
-                                        <div class="hero-stat-label">Services</div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="hero-content-left">
+                            <span class="hero-tag">Expert Dental Care</span>
+                            <h1>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h1>
+                            <p><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 200)) ?>...</p>
+                            <a href="javascript:void(0)" class="btn-primary-teal" onclick="openModal()">
+                                Book Appointment
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="hero-img-right">
-                                <span class="hero-img-tag">✅ Trusted by 1000+ Patients</span>
-                                <img src="<?= BASE_URL ?>uploads/services/<?= $pdetailrec['image'] ?>"
-                                    alt="<?= htmlspecialchars($pdetailrec['heading']) ?> in Jamshedpur – We Care Dental Clinic">
-                                <div class="hero-img-badge">
-                                    <div class="badge-icon">🏆</div>
-                                    <div class="badge-text">
-                                        <strong>Dr. Anand Pandey</strong>
-                                        <span>12+ Years of Expert Care</span>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="hero-img-right">
+                            <img src="<?= BASE_URL ?>uploads/services/<?= $pdetailrec['image'] ?>" alt="<?= $pdetailrec['heading'] ?>">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════
-             TRUST STRIP
-        ═══════════════════════════════════════ -->
-        <div class="trust-strip">
-            <div class="container">
-                <div class="trust-inner">
-                    <div class="trust-item">
-                        <div class="trust-icon">🔬</div>
-                        <div>
-                            <div class="trust-label">Advanced Technology</div>
-                            <div class="trust-sub">Latest dental equipment</div>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">🛡️</div>
-                        <div>
-                            <div class="trust-label">100% Safe & Sterile</div>
-                            <div class="trust-sub">International hygiene standards</div>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">💊</div>
-                        <div>
-                            <div class="trust-label">Pain-Free Treatments</div>
-                            <div class="trust-sub">Comfortable procedures</div>
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">💰</div>
-                        <div>
-                            <div class="trust-label">Affordable Pricing</div>
-                            <div class="trust-sub">Transparent, no hidden costs</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════
-             DESCRIPTION + SIDEBAR
-        ═══════════════════════════════════════ -->
+        <!-- MAIN GRID: SIDEBAR + DESCRIPTION -->
         <section class="service-main-grid">
             <div class="container">
                 <div class="row">
 
-                    <!-- Sidebar -->
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="sidebar-services">
-                            <div class="sidebar-header">
-                                <h3 class="sidebar-title">Our Services</h3>
-                            </div>
-                            <ul class="sidebar-list">
-                                <?php
-                                $otherSvc = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC");
-                                while ($svc = mysqli_fetch_array($otherSvc)) {
-                                    $active = ($svc['url'] == $bname) ? 'active' : '';
-                                    echo '<li><a href="' . BASE_URL . $svc['url'] . '" class="' . $active . '">' . $svc['heading'] . '</a></li>';
-                                }
-                                ?>
-                            </ul>
-                            <div class="sidebar-contact-box">
-                                <p>Need Help? Call Us</p>
-                                <a class="sidebar-phone" href="tel:<?= $coninfo['con_phone1'] ?>">
-                                    📞 <?= $coninfo['con_phone1'] ?>
-                                </a>
-                                <a class="sidebar-wa-btn"
-                                    href="https://api.whatsapp.com/send?phone=<?= $coninfo['con_phone1'] ?>&text=Hello%2C+I+need+help+with+<?= urlencode($pdetailrec['heading']) ?>"
-                                    target="_blank" rel="noopener">
-                                    💬 WhatsApp Us
-                                </a>
+                    <!-- LEFT SIDEBAR (sticky) -->
+                    <div class="col-lg-4 sidebar-col">
+                        <div class="sidebar-sticky-wrap">
+                            <div class="sidebar-card">
+
+                                <!-- Services List -->
+                                <div class="sidebar-services-block">
+                                    <h3 class="sidebar-block-title">Our Services</h3>
+                                    <ul class="sidebar-list">
+                                        <?php
+                                        $otherSvc = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC");
+                                        while ($svc = mysqli_fetch_array($otherSvc)) {
+                                            $active = ($svc['url'] == $bname) ? 'active' : '';
+                                            echo '<li>
+                                                <a href="' . BASE_URL . $svc['url'] . '" class="' . $active . '">
+                                                    <span>' . htmlspecialchars($svc['heading']) . '</span>
+                                                    <span class="arrow-icon">›</span>
+                                                </a>
+                                            </li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+
+                                <!-- CTA Phone Block -->
+                                <div class="sidebar-cta-block">
+                                    <p class="cta-label">Need Help?</p>
+                                    <p class="cta-sub">Call us anytime — we're happy to assist you.</p>
+                                    <a href="tel:<?= $coninfo['con_phone1'] ?>" class="cta-phone">
+                                        <span class="phone-icon">📞</span>
+                                        <?= $coninfo['con_phone1'] ?>
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <!-- Main Description -->
+                    <!-- MAIN DESCRIPTION -->
                     <div class="col-lg-8">
-                        <div class="description-content">
-                            <?= $pdetailrec['des'] ?>
+                        <div class="description-card">
+                            <div class="desc-header">
+                                <div class="desc-header-icon">🦷</div>
+                                <div class="desc-header-text">
+                                    <h2><?= $pdetailrec['heading']; ?></h2>
+                                    <p>WeCare Dental Clinic, Jamshedpur</p>
+                                </div>
+                            </div>
+                            <div class="description-body">
+                                <?= $pdetailrec['des'] ?>
+                            </div>
                         </div>
                     </div>
 
@@ -1203,79 +811,41 @@ $coninfo = mysqli_fetch_array($con);
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════
-             ENQUIRY SECTION
-        ═══════════════════════════════════════ -->
+        <!-- ENQUIRY SECTION -->
         <section class="enquiry-section">
             <div class="container">
-                <div class="enquiry-section-title">
-                    <span class="section-tag">Get In Touch</span>
-                    <h2>Have a Question? We're Here to Help</h2>
-                    <p>Send us a message and our team will respond within a few hours.</p>
+                <div class="enquiry-inner text-center">
+                    <span class="enquiry-badge">✉ Get in Touch</span>
+                    <h2 class="enquiry-title">Send Us a Quick Enquiry</h2>
+                    <p class="enquiry-sub">Have a question about our services? Fill in the form and we'll get back to you shortly.</p>
                 </div>
-
-                <div class="enquiry-layout">
-                    <!-- Info column -->
-                    <div class="enquiry-info">
-                        <div class="info-card">
-                            <div class="info-card-icon">📍</div>
-                            <div class="info-card-body">
-                                <strong>Visit Our Clinic</strong>
-                                <span>47, Thakur Bari Road, Opposite Zila Parishad Bhawan, Sakchi, Jamshedpur, Jharkhand
-                                    831001</span>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-icon">📞</div>
-                            <div class="info-card-body">
-                                <strong>Call / WhatsApp</strong>
-                                <span><a
-                                        href="tel:<?= $coninfo['con_phone1'] ?>"><?= $coninfo['con_phone1'] ?></a></span>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-icon">⏰</div>
-                            <div class="info-card-body">
-                                <strong>Clinic Hours</strong>
-                                <span>Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: By Appointment Only</span>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-icon">⚡</div>
-                            <div class="info-card-body">
-                                <strong>Emergency Care</strong>
-                                <span>Emergency dental care available — call us anytime for urgent cases.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Form column -->
-                    <div class="enquiry-form-wrap">
-                        <span class="form-label-top">Send Quick Enquiry</span>
+                <div class="enquiry-inner">
+                    <div class="enquiry-form-card">
                         <form method="POST" action="<?= BASE_URL; ?>mail/contactMail" name="enquiryForm">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name *"
-                                        required>
+                                    <label class="form-label-float">Your Name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="tel" name="phone" class="form-control" placeholder="Phone Number *"
-                                        required>
+                                    <label class="form-label-float">Phone Number</label>
+                                    <input type="tel" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <input type="email" name="email" class="form-control" placeholder="Email Address *"
-                                        required>
+                                    <label class="form-label-float">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <textarea name="message" class="form-control" rows="4"
-                                        placeholder="How can we help you?"></textarea>
+                                    <label class="form-label-float">Your Message</label>
+                                    <textarea name="message" class="form-control" placeholder="How can we help you?"></textarea>
                                 </div>
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-12 mb-4">
                                     <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
                                 </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn-submit-form">
-                                        📨 Send Enquiry
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn-submit-teal">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l12 0M10 4l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        Send Enquiry
                                     </button>
                                 </div>
                             </div>
@@ -1285,43 +855,27 @@ $coninfo = mysqli_fetch_array($con);
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════
-             BOOKING MODAL
-        ═══════════════════════════════════════ -->
+        <!-- BOOKING MODAL -->
         <div id="bookingModal">
-            <div class="modal-content">
-                <div class="modal-header-bar">
-                    <button class="close-modal" onclick="closeModal()" aria-label="Close">&times;</button>
-                    <h3>📅 Book an Appointment</h3>
-                    <p>Fill in your details to schedule your visit for <strong
-                            style="color:#fff;"><?= $pdetailrec['heading'] ?></strong>.</p>
+            <div class="modal-box">
+                <div class="modal-header">
+                    <h3>Book an Appointment</h3>
+                    <p>Schedule your visit for <?= $pdetailrec['heading'] ?></p>
+                    <button class="modal-close-btn" onclick="closeModal()">×</button>
                 </div>
-                <div class="modal-body-pad">
+                <div class="modal-body">
                     <form method="POST" action="<?= BASE_URL; ?>mail/contactMail">
-                        <div class="mb-3">
-                            <label>Your Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter your full name"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Phone Number</label>
-                            <input type="tel" name="phone" class="form-control" placeholder="Enter your phone number"
-                                required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Patient Type</label>
-                            <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
-                            <select class="form-control" name="patient">
-                                <option>New Patient</option>
-                                <option>Returning Patient</option>
-                            </select>
-                        </div>
+                        <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number *" required>
+                        <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
+                        <select class="form-control" name="patient">
+                            <option>New Patient</option>
+                            <option>Returning Patient</option>
+                        </select>
                         <div class="mb-3">
                             <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
                         </div>
-                        <button type="submit" class="btn-modal-submit">
-                            ✅ Schedule My Appointment
-                        </button>
+                        <button type="submit" class="btn-modal-submit">Schedule Now</button>
                     </form>
                 </div>
             </div>
@@ -1335,17 +889,18 @@ $coninfo = mysqli_fetch_array($con);
 
     <script>
         function openModal() {
-            document.getElementById('bookingModal').style.display = 'block';
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
         function closeModal() {
-            document.getElementById('bookingModal').style.display = 'none';
+            const modal = document.getElementById('bookingModal');
+            modal.classList.remove('open');
             document.body.style.overflow = 'auto';
         }
-        window.onclick = function (event) {
-            if (event.target == document.getElementById('bookingModal')) {
-                closeModal();
-            }
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) closeModal();
         }
     </script>
 </body>
