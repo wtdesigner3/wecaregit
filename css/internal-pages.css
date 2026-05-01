@@ -4951,6 +4951,15 @@ h6 {
 }
 
 @media (max-width: 768px) {
+    .page-hero {
+        min-height: 230px !important;
+    }
+
+    .sidebar-services-block,
+    .sidebar-enquiry-block {
+        padding: 0 !important;
+    }
+
     .footer-col-title {
         margin-top: 20px;
 
