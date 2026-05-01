@@ -27,7 +27,7 @@ foreach ($static_pages as $page) {
 $svcQuery = mysqli_query($conn, "SELECT url FROM `tbl_services` WHERE `status`='1'");
 while ($svc = mysqli_fetch_assoc($svcQuery)) {
     echo '  <url>' . PHP_EOL;
-    echo '    <loc>' . $base . 'services/' . rawurlencode($svc['url']) . '</loc>' . PHP_EOL;
+    echo '    <loc>' . $base . rawurlencode($svc['url']) . '</loc>' . PHP_EOL;
     echo '    <lastmod>' . $lastmod . '</lastmod>' . PHP_EOL;
     echo '    <changefreq>monthly</changefreq>' . PHP_EOL;
     echo '    <priority>0.8</priority>' . PHP_EOL;

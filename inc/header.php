@@ -143,7 +143,7 @@ $proinfo = mysqli_fetch_array($conqry);
             $svcNav = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC");
             if (mysqli_num_rows($svcNav) != 0) {
               while ($svc = mysqli_fetch_array($svcNav)) {
-                $href = (!empty($svc['link'])) ? $svc['link'] : BASE_URL . 'services/' . $svc['url'];
+                $href = (!empty($svc['link'])) ? $svc['link'] : BASE_URL . $svc['url'];
                 ?>
                 <a href="<?= $href; ?>" class="dropdown-item">
 
@@ -222,7 +222,7 @@ $proinfo = mysqli_fetch_array($conqry);
           $svcMob = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC");
           if (mysqli_num_rows($svcMob) != 0) {
             while ($sm = mysqli_fetch_array($svcMob)) {
-              $href = (!empty($sm['link'])) ? $sm['link'] : BASE_URL . 'services/' . $sm['url'];
+              $href = (!empty($sm['link'])) ? $sm['link'] : BASE_URL . $sm['url'];
               ?>
               <a href="<?= $href; ?>">
                 <img src="<?= BASE_URL; ?>uploads/services/<?= $sm['hicon']; ?>" alt="<?= $sm['halt']; ?>">

@@ -12,7 +12,7 @@ if (!$pdetailrec) {
 }
 
 $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$canonical_url = BASE_URL . 'services/' . $pdetailrec['url'];
+$canonical_url = BASE_URL . $pdetailrec['url'];
 ?>
 
 <!DOCTYPE html>
@@ -168,7 +168,6 @@ $canonical_url = BASE_URL . 'services/' . $pdetailrec['url'];
         <div class="hero-left">
             <nav class="breadcrumb-nav" style="margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);">
                 <a href="<?= BASE_URL ?>" style="color: inherit; text-decoration: none;">Home</a> / 
-                <a href="<?= BASE_URL ?>services" style="color: inherit; text-decoration: none;">Services</a> / 
                 <span><?= $pdetailrec['heading'] ?></span>
             </nav>
             <h1><?= $pdetailrec['heading'] ?></h1>

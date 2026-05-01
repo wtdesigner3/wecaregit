@@ -24,7 +24,15 @@ ErrorDocument 403 /404.php
 # ─── Pretty URL Rules ──────────────────────────────────────────────────────
 RewriteRule ^blog-detail/([a-zA-Z0-9-/]+)$ single-post.php?url=$1 [L]
 RewriteRule ^brands/([^/\.]+)/?$ brands.php?url=$1 [L]
-RewriteRule ^services/([^/\.]+)/?$ service.php?url=$1 [L]
+
+# Redirect old /services/ URLs to root
+RewriteRule ^services/(.*)$ /$1 [R=301,L]
+
+# Dynamic Services at Root (if not a real file or .php file)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php !-f
+RewriteRule ^([^/\.]+)/?$ service.php?url=$1 [L]
 
 # ─── Auto-append .php extension ────────────────────────────────────────────
 RewriteCond %{REQUEST_FILENAME}.php -f
