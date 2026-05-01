@@ -165,16 +165,17 @@ $brandfetch = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `tbl_service
                 if (mysqli_num_rows($ftSvc) != 0) {
                     while ($fs = mysqli_fetch_array($ftSvc)) {
                         $fhref = (!empty($fs['link'])) ? $fs['link'] : BASE_URL . 'services/' . $fs['url'];
-                ?>
-                <li>
-                    <a href="<?= $fhref; ?>">
-                        <span class="link-arrow"><svg viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg></span>
-                        <?= $fs['heading']; ?>
-                    </a>
-                </li>
-                <?php } } ?>
+                        ?>
+                        <li>
+                            <a href="<?= $fhref; ?>">
+                                <span class="link-arrow"><svg viewBox="0 0 24 24">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg></span>
+                                <?= $fs['heading']; ?>
+                            </a>
+                        </li>
+                    <?php }
+                } ?>
             </ul>
         </div>
 
@@ -242,7 +243,7 @@ $brandfetch = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `tbl_service
 
 
         <!-- ══ COL 4: Callback Form ══ -->
-        <div class="footer-col">
+        <div class="footer-col d-none">
             <span class="footer-col-title">Request a Call Back</span>
             <div class="footer-form-card">
                 <p class="footer-form-intro">Leave your details and we'll call you back at your preferred time.</p>
