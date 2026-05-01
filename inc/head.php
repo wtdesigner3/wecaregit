@@ -20,8 +20,7 @@ $proinfo = mysqli_fetch_array($conqry);
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- GOOGLE FONTS -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- BOOTSTRAP CSS -->
 <link href="<?php echo BASE_URL; ?>css/bootstrap.min.css" rel="stylesheet">

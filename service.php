@@ -11,198 +11,327 @@ if (!$pdetailrec) {
     exit();
 }
 
-$actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $canonical_url = BASE_URL . $pdetailrec['url'];
+
+// Get contact info for the form
+$con = mysqli_query($conn, "SELECT * FROM `tbl_contact`");
+$coninfo = mysqli_fetch_array($con);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link href="<?= BASE_URL ?>uploads/fevicon.png" rel="shortcut icon" type="image/x-icon">
-    <link href="<?= BASE_URL ?>uploads/fevicon.jpg" rel="shortcut icon" type="image/x-icon">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
-
-    <!-- BOOTSTRAP CSS -->
-    <link href="<?php echo BASE_URL; ?>css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="<?php echo BASE_URL; ?>css/flaticon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- PLUGINS STYLESHEET -->
-    <link href="<?php echo BASE_URL; ?>css/menu.css" rel="stylesheet">
-    <link id="effect" href="<?php echo BASE_URL; ?>css/dropdown-effects/fade-down.css" media="all" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/magnific-popup.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/owl.carousel.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/owl.theme.default.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/animate.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/jquery.datetimepicker.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>toaster/toaster.css">
-    <link rel="shortcut icon" href="<?= BASE_URL; ?>uploads/<?= $proinfo['pro_favicon']; ?>">
-
-    <!-- TEMPLATE CSS -->
-    <link href="<?php echo BASE_URL; ?>css/style.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/responsive.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL; ?>css/internal-pages.css" rel="stylesheet">
-    
-    <meta charset="UTF-8" />
+    <?php include 'inc/head.php'; ?>
     <title><?= htmlspecialchars($pdetailrec['metatag'] ?: $pdetailrec['heading']) ?></title>
     <meta name="description" content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="keywords" content="<?= htmlspecialchars($pdetailrec['keyword'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="<?= $canonical_url ?>" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="<?= htmlspecialchars($pdetailrec['metatag'] ?: $pdetailrec['heading']) ?>" />
-    <meta property="og:description" content="<?= htmlspecialchars($pdetailrec['metadesc'] ?? '', ENT_QUOTES, 'UTF-8') ?>" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<?= $canonical_url ?>" />
-    <meta property="og:image" content="<?= BASE_URL; ?>uploads/services/<?= $pdetailrec['image']; ?>" />
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
-
     <style>
-        :root {
-            --sage: #4a7c59;
-            --sage-light: #6fa080;
-            --sage-pale: #d4e8d8;
-            --cream: #f8f4ee;
-            --warm-white: #fdfaf6;
-            --charcoal: #1c2b1e;
-            --mid: #3d5240;
-            --muted: #7a8f7d;
-            --accent: #c8843a;
-            --accent-light: #e8a85a;
-            --red-soft: #c75b5b;
-            --border: rgba(74, 124, 89, 0.15);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero {
-            min-height: 80vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-            background: var(--warm-white);
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 60% 80% at 70% 50%, var(--sage-pale) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 5% 8%;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            color: var(--charcoal);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-sub {
-            font-size: 1.1rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .service-content-section {
-            padding: 5rem 8%;
+        /* Redesign Specific Styles */
+        .service-hero-split {
+            padding: 80px 0;
             background: #fff;
         }
-
-        .service-main-content {
-            font-size: 1.1rem;
+        .hero-content-left {
+            padding-right: 30px;
+        }
+        .hero-content-left h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero-content-left p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .hero-img-right img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-main-grid {
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+        .sidebar-services {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a3c8;
+        }
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-list li {
+            margin-bottom: 12px;
+        }
+        .sidebar-list a {
+            color: #444;
+            display: block;
+            padding: 8px 0;
+            transition: 0.3s;
+            border-bottom: 1px solid #eee;
+        }
+        .sidebar-list a:hover, .sidebar-list a.active {
+            color: #00a3c8;
+            padding-left: 5px;
+        }
+        
+        .description-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             line-height: 1.8;
-            color: var(--mid);
+            color: #555;
+        }
+        .description-content h2, .description-content h3 {
+            color: #222;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
 
-        .service-main-content h2, .service-main-content h3 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--sage);
-            margin: 2rem 0 1rem;
+        .enquiry-section {
+            padding: 80px 0;
+            background: #fff;
         }
-
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; }
-            .hero-right { display: none; }
+        .enquiry-form-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f4f7f9;
+            padding: 50px;
+            border-radius: 20px;
+        }
+        
+        /* Modal Styles */
+        #bookingModal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        .btn-blue {
+            background-color: #00a3c8;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-blue:hover {
+            background-color: #008caf;
+            color: #fff;
         }
     </style>
 </head>
 
 <body>
-    <?php include 'inc/header.php'; ?>
 
-    <div class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-left">
-            <nav class="breadcrumb-nav" style="margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);">
-                <a href="<?= BASE_URL ?>" style="color: inherit; text-decoration: none;">Home</a> / 
-                <span><?= $pdetailrec['heading'] ?></span>
-            </nav>
-            <h1><?= $pdetailrec['heading'] ?></h1>
-            <p class="hero-sub"><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 160)) ?>...</p>
-            <div class="hero-actions">
-                <a href="<?= BASE_URL ?>contact" class="btn-primary" style="background: var(--sage); color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; display: inline-block;">Book Appointment</a>
+    <div id="page" class="page-wrapper">
+
+        <?php include 'inc/header.php'; ?>
+
+        <!-- ═══════════════════════════════════════
+         BREADCRUMB HERO (Like Contact Page)
+    ═══════════════════════════════════════ -->
+        <div class="page-hero">
+            <div class="page-hero-inner">
+                <nav class="breadcrumb-nav">
+                    <a href="<?= BASE_URL; ?>">Home</a>
+                    <span class="breadcrumb-sep">›</span>
+                    <span><?= $pdetailrec['heading']; ?></span>
+                </nav>
+                <h1><?= $pdetailrec['heading']; ?></h1>
             </div>
         </div>
-        <div class="hero-right" style="display: flex; align-items: center; justify-content: center; padding: 5%;">
-             <?php if (!empty($pdetailrec['image'])): ?>
-                <img src="<?= BASE_URL ?>uploads/services/<?= $pdetailrec['image'] ?>" alt="<?= $pdetailrec['heading'] ?>" style="max-width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-             <?php endif; ?>
+
+        <!-- ═══════════════════════════════════════
+         HERO SPLIT SECTION
+    ═══════════════════════════════════════ -->
+        <section class="service-hero-split">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="hero-content-left">
+                            <span class="section-tag" style="color: #00a3c8; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block;">Expert Dental Care</span>
+                            <h1>Best <em><?= $pdetailrec['heading']; ?></em> in Jamshedpur</h1>
+                            <p><?= htmlspecialchars(substr(strip_tags($pdetailrec['des']), 0, 200)) ?>...</p>
+                            <a href="javascript:void(0)" class="btn btn-blue" onclick="openModal()">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="hero-img-right">
+                            <img src="<?= BASE_URL ?>uploads/services/<?= $pdetailrec['image'] ?>" alt="<?= $pdetailrec['heading'] ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         DESCRIPTION SECTION WITH SIDEBAR
+    ═══════════════════════════════════════ -->
+        <section class="service-main-grid">
+            <div class="container">
+                <div class="row">
+                    <!-- Sidebar -->
+                    <div class="col-lg-4">
+                        <div class="sidebar-services">
+                            <h3 class="sidebar-title">Our Services</h3>
+                            <ul class="sidebar-list">
+                                <?php
+                                $otherSvc = mysqli_query($conn, "SELECT * FROM `tbl_services` WHERE `status`='1' ORDER BY `sort` ASC");
+                                while ($svc = mysqli_fetch_array($otherSvc)) {
+                                    $active = ($svc['url'] == $bname) ? 'active' : '';
+                                    echo '<li><a href="'.BASE_URL.$svc['url'].'" class="'.$active.'">'.$svc['heading'].'</a></li>';
+                                }
+                                ?>
+                            </ul>
+                            
+                            <div class="sidebar-contact" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                                <p style="font-weight: 700; margin-bottom: 5px;">Need Help?</p>
+                                <a href="tel:<?= $coninfo['con_phone1'] ?>" style="color: #00a3c8; font-size: 18px; font-weight: 700;"><?= $coninfo['con_phone1'] ?></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Description -->
+                    <div class="col-lg-8">
+                        <div class="description-content">
+                            <?= $pdetailrec['des'] ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         ENQUIRY FORM SECTION
+    ═══════════════════════════════════════ -->
+        <section class="enquiry-section">
+            <div class="container">
+                <div class="enquiry-form-wrap">
+                    <div class="section-title">
+                        <h2 class="h2-md">Quick Enquiry</h2>
+                        <p class="p-lg">Have a question? Send us a message and we'll get back to you shortly.</p>
+                    </div>
+                    
+                    <form method="POST" action="<?= BASE_URL; ?>mail/contactMail" name="enquiryForm" class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name*" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number*" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Email Address*" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <textarea name="message" class="form-control" rows="4" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-blue">Send Enquiry</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+         BOOKING MODAL
+    ═══════════════════════════════════════ -->
+        <div id="bookingModal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <h3 style="font-weight: 700; margin-bottom: 10px;">Book an Appointment</h3>
+                <p style="color: #666; margin-bottom: 25px;">Fill details to schedule your visit for <?= $pdetailrec['heading'] ?>.</p>
+                
+                <form method="POST" action="<?= BASE_URL; ?>mail/contactMail">
+                    <div class="mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" name="service" value="<?= $pdetailrec['heading'] ?>">
+                        <select class="form-control" name="patient">
+                            <option>New Patient</option>
+                            <option>Returning Patient</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="g-recaptcha" data-sitekey="<?= RECAPTCHA_SITE_KEY ?>"></div>
+                    </div>
+                    <button type="submit" class="btn btn-blue w-100">Schedule Now</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <section class="service-content-section fade-in">
-        <div class="service-main-content">
-            <?= $pdetailrec['des'] ?>
-        </div>
-    </section>
+        <?php include 'inc/footer.php'; ?>
 
-    <?php 
-    // Include the extra components from gum-treatments that the user liked
-    // These would be the static sections like Symptoms, Process etc if they are broadly applicable
-    // For now I'll include the footer and footer data.
-    ?>
+    </div><!-- END PAGE -->
 
-    <?php include 'inc/footer.php'; ?>
     <?php include 'inc/footer-data.php'; ?>
 
     <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        function openModal() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('bookingModal')) {
+                closeModal();
+            }
+        }
     </script>
 </body>
+
 </html>
